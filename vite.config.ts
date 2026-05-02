@@ -10,7 +10,13 @@ export const sharedConfig = defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    dts({ include: ['src'], exclude: ['src/**/__tests__/**', 'src/App.vue', 'src/main.ts'] }),
+    dts({
+      tsconfigPath: './tsconfig.app.json',
+      include: ['src'],
+      exclude: ['src/**/__tests__/**', 'src/App.vue', 'src/main.ts'],
+      outDirs: 'dist',
+      entryRoot: 'src',
+    }),
   ],
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
