@@ -35,5 +35,3 @@ export function resolveApp(app: string | AppConfig): AppConfig {
   return found
 }
 
-export { bash } from './bash'
-export { claudeCode } from './claude-code'
