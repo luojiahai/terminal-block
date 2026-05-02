@@ -1,3 +1,5 @@
+import type { InjectionKey, Ref } from 'vue'
+
 export interface ThemeTokens {
   bg: string
   titlebarBg: string
@@ -16,6 +18,8 @@ export interface ThemeTokens {
   ansiCyan: string
   ansiWhite: string
 }
+
+export const TB_THEME_KEY: InjectionKey<Ref<ThemeTokens>> = Symbol('tbTheme')
 
 export const defaultTheme: ThemeTokens = {
   bg: '#010409',
@@ -36,6 +40,13 @@ export const defaultTheme: ThemeTokens = {
   ansiWhite: '#b1bac4',
 }
 
-export function resolveTheme(_theme: string | Partial<ThemeTokens>): Partial<ThemeTokens> {
-  return {}
+const NAMED_THEMES: Record<string, Partial<ThemeTokens>> = {
+  default: defaultTheme,
+}
+
+export function resolveTheme(theme: string | Partial<ThemeTokens>): Partial<ThemeTokens> {
+  if (typeof theme !== 'string') return theme
+  const found = NAMED_THEMES[theme]
+  if (!found) throw new Error(`[terminal-block] Unknown theme: "${theme}"`)
+  return found
 }
