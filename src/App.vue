@@ -10,13 +10,11 @@ import Red from './components/colors/Red.vue'
 <template>
   <div style="padding: 32px; background: #1a1a2e; min-height: 100vh; display: flex; flex-direction: column; gap: 24px;">
     <TerminalBlock>
-      <ClaudeCode version="v2.1.126" subtitle="Sonnet 4.6 · API Billing" cwd="~/workplace">
+      <ClaudeCode title="Claude Code" version="v2.1.126" subtitle="Sonnet 4.6 · API Billing" cwd="~/workplace">
         <ClaudeCode.Input>hello</ClaudeCode.Input>
         <ClaudeCode.Output>Hey! How can I help you today?</ClaudeCode.Output>
         <ClaudeCode.Thinking done>3s</ClaudeCode.Thinking>
-        <ClaudeCode.Output>
-          <Green>✔</Green> Build completed in <Yellow>2.3s</Yellow>
-        </ClaudeCode.Output>
+        <ClaudeCode.Output>Build completed in <Yellow>2.3s</Yellow></ClaudeCode.Output>
       </ClaudeCode>
     </TerminalBlock>
 
@@ -25,9 +23,7 @@ import Red from './components/colors/Red.vue'
         <Bash.Input>ls -la</Bash.Input>
         <Bash.Output>total 24 drwxr-xr-x 8 user staff 256</Bash.Output>
         <Bash.Input>npm run build</Bash.Input>
-        <Bash.Output>
-          <Red>✘</Red> Build failed: module not found
-        </Bash.Output>
+        <Bash.Output>Build failed: module not found</Bash.Output>
       </Bash>
     </TerminalBlock>
   </div>

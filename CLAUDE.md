@@ -29,18 +29,20 @@ pnpm run test:unit src/components/__tests__/TerminalBlock.spec.ts
 Everything exported from `src/index.ts` is part of the public package API. Components, app configs, theme utilities, and the iTerm2 parser are all re-exported here.
 
 ### App config system (`src/apps/`)
-An `AppConfig` object defines how a terminal "app" looks: the glyph and colors for input/output turns, which turn types are supported, an optional ASCII logo, and optional theme overrides. Apps register themselves at module load time via `registerApp()`. Built-in apps (`bash`, `claude-code`) are registered by importing the module — consumers must import them before using them by name.
+`src/apps/index.ts` defines the `AppConfig` / `TurnConfig` interfaces and two injection keys: `TB_APP_KEY` (the resolved app config) and `TB_TITLE_KEY` (the titlebar label string).
 
-`TerminalBlock` calls `resolveApp(props.app)` and `provide`s the resolved config via `TB_APP_KEY`. Child turn components inject this to read their `TurnConfig`.
+`TerminalBlock` provides `TB_TITLE_KEY`. Each app wrapper component (`ClaudeCode.vue`, `Bash.vue`) hardcodes its own `AppConfig`, calls `provide(TB_APP_KEY, ref(config))`, and injects `TB_TITLE_KEY` via `watchEffect` to keep the titlebar title in sync with its `title` prop. Turn sub-components (`Input`, `Output`) inject `TB_APP_KEY` to read their `TurnConfig`.
+
+`ClaudeCode` and `Bash` are exported as compound components via `Object.assign(Component, { Input, Output })`, enabling `<ClaudeCode.Input>` usage.
 
 ### Theme system (`src/themes/`)
-`ThemeTokens` is a flat record of CSS custom property values (colors only). `TerminalBlock` merges `defaultTheme` → app's `themeOverrides` → user's `theme` prop, then injects them as inline `--tb-*` CSS vars on the root element. Turn components and color components reference these vars directly.
+`ThemeTokens` is a flat record of CSS custom property values (colors only). `TerminalBlock` merges `defaultTheme` → user's `theme` prop, then injects them as inline `--tb-*` CSS vars on the root element. Turn components and color components reference these vars directly. `ClaudeCode` overrides `--tb-accent` to `#d97757` in its own scoped CSS, independently of the theme system.
 
 `resolveTheme` accepts a named theme string or a partial `ThemeTokens` object. `parseItermColors` maps an iTerm2 `.itermcolors` XML string to a `Partial<ThemeTokens>`.
 
 ### Turn components (`src/components/`)
 - `InputTurn` / `OutputTurn` — inject `TB_APP_KEY`, render a glyph + slot content using the app's `TurnConfig`
-- `Thinking` — inject `TB_APP_KEY`, only renders if `supportedTurns` includes `'Thinking'`; shows "Verb..." when `done=false`, "Thought for <slot>" when `done=true`
+- `Thinking` — shows "Verb..." when `done=false`, "Thought for <slot>" when `done=true`; no app injection or conditional guard
 - Color components (`Red`, `Green`, etc.) — thin wrappers that apply the corresponding `--tb-ansi-*` CSS var to a `<span>`
 
 ### Build output

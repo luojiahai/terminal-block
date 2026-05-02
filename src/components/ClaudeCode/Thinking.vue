@@ -23,7 +23,7 @@ const presentText = computed(
 .cc-thinking {
   display: flex;
   align-items: baseline;
-  gap: 16px;
+  gap: 8px;
 }
 
 .cc-thinking-glyph {

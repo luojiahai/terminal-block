@@ -19,7 +19,7 @@ const textStyle = computed(() => ({ color: `var(${turnConfig.value.textColor})` 
 .cc-output {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
 }
 
 .cc-glyph {
