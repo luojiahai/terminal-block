@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { defineComponent, inject, ref } from 'vue'
 import { mount } from '@vue/test-utils'
 import TerminalBlock from '../TerminalBlock.vue'
-import { TB_TITLE_KEY } from '@/apps'
+import { TERMINAL_BLOCK_TITLE_KEY } from '@/components/TerminalBlock.vue'
 
 describe('TerminalBlock', () => {
   it('renders the macOS title bar', () => {
@@ -15,10 +15,10 @@ describe('TerminalBlock', () => {
     expect(wrapper.findAll('.terminal-block-dot')).toHaveLength(3)
   })
 
-  it('shows title written by child via TB_TITLE_KEY', async () => {
+  it('shows title written by child via TERMINAL_BLOCK_TITLE_KEY', async () => {
     const TitleWriter = defineComponent({
       setup() {
-        const title = inject(TB_TITLE_KEY)
+        const title = inject(TERMINAL_BLOCK_TITLE_KEY)
         if (title) title.value = 'test-app'
         return () => null
       },

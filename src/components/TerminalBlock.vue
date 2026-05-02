@@ -1,6 +1,10 @@
+<script lang="ts">
+import type { InjectionKey, Ref } from 'vue'
+export const TERMINAL_BLOCK_TITLE_KEY: InjectionKey<Ref<string>> = Symbol('terminal-block-title')
+</script>
+
 <script setup lang="ts">
 import { computed, provide, ref } from 'vue'
-import { TB_TITLE_KEY } from '@/apps'
 import { defaultTheme, resolveTheme, type ThemeTokens } from '@/themes'
 
 const props = defineProps<{
@@ -8,7 +12,7 @@ const props = defineProps<{
 }>()
 
 const titleLabel = ref('')
-provide(TB_TITLE_KEY, titleLabel)
+provide(TERMINAL_BLOCK_TITLE_KEY, titleLabel)
 
 const mergedTheme = computed(
   (): ThemeTokens => ({

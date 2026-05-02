@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { inject, watchEffect } from 'vue'
-import { TB_TITLE_KEY } from '@/apps'
+import { TERMINAL_BLOCK_TITLE_KEY } from '@/components/TerminalBlock.vue'
 
 const props = defineProps<{ title?: string }>()
 
-const titleLabel = inject(TB_TITLE_KEY)
+const titleLabel = inject(TERMINAL_BLOCK_TITLE_KEY)
 watchEffect(() => {
   if (titleLabel) titleLabel.value = props.title ?? 'bash'
 })
