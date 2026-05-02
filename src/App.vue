@@ -2,15 +2,26 @@
 import TerminalBlock from './components/TerminalBlock.vue'
 import { ClaudeCode } from './components/ClaudeCode'
 import { Bash } from './components/Bash'
-import Green from './components/colors/Green.vue'
 import Yellow from './components/colors/Yellow.vue'
-import Red from './components/colors/Red.vue'
 </script>
 
 <template>
-  <div style="padding: 32px; background: #1a1a2e; min-height: 100vh; display: flex; flex-direction: column; gap: 24px;">
+  <div
+    style="
+      padding: 32px;
+      background: #1a1a2e;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    "
+  >
     <TerminalBlock>
-      <ClaudeCode title="Claude Code" version="v2.1.126" subtitle="Sonnet 4.6 · API Billing" cwd="~/workplace">
+      <ClaudeCode
+        version="v2.1.126"
+        subtitle="Sonnet 4.6 · API Billing"
+        cwd="~/workplace"
+      >
         <ClaudeCode.Input>hello</ClaudeCode.Input>
         <ClaudeCode.Output>Hey! How can I help you today?</ClaudeCode.Output>
         <ClaudeCode.Thinking done>3s</ClaudeCode.Thinking>

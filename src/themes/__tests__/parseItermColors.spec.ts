@@ -26,41 +26,57 @@ function makeXml(entries: Record<string, { r: number; g: number; b: number }>): 
 
 describe('parseItermColors', () => {
   it('maps Background Color to bg and titlebarBg', () => {
-    const xml = makeXml({ 'Background Color': { r: 0.00392156862745098, g: 0.01568627450980392, b: 0.03529411764705882 } })
+    const xml = makeXml({
+      'Background Color': {
+        r: 0.00392156862745098,
+        g: 0.01568627450980392,
+        b: 0.03529411764705882,
+      },
+    })
     const theme = parseItermColors(xml)
     expect(theme.bg).toBe('#010409')
     expect(theme.titlebarBg).toBe('#010409')
   })
 
   it('maps Foreground Color to text', () => {
-    const xml = makeXml({ 'Foreground Color': { r: 0.9019607843137255, g: 0.9294117647058824, b: 0.9529411764705882 } })
+    const xml = makeXml({
+      'Foreground Color': { r: 0.9019607843137255, g: 0.9294117647058824, b: 0.9529411764705882 },
+    })
     const theme = parseItermColors(xml)
     expect(theme.text).toBe('#e6edf3')
   })
 
   it('maps Ansi 7 Color to secondary and ansiWhite', () => {
-    const xml = makeXml({ 'Ansi 7 Color': { r: 0.6941176470588235, g: 0.7294117647058823, b: 0.7686274509803922 } })
+    const xml = makeXml({
+      'Ansi 7 Color': { r: 0.6941176470588235, g: 0.7294117647058823, b: 0.7686274509803922 },
+    })
     const theme = parseItermColors(xml)
     expect(theme.secondary).toBe('#b1bac4')
     expect(theme.ansiWhite).toBe('#b1bac4')
   })
 
   it('maps Ansi 8 Color to muted and divider', () => {
-    const xml = makeXml({ 'Ansi 8 Color': { r: 0.43137254901960786, g: 0.4627450980392157, b: 0.5058823529411764 } })
+    const xml = makeXml({
+      'Ansi 8 Color': { r: 0.43137254901960786, g: 0.4627450980392157, b: 0.5058823529411764 },
+    })
     const theme = parseItermColors(xml)
     expect(theme.muted).toBe('#6e7681')
     expect(theme.divider).toBe('#6e7681')
   })
 
   it('maps Ansi 0 Color to inputBg and codeBg', () => {
-    const xml = makeXml({ 'Ansi 0 Color': { r: 0.2823529411764706, g: 0.30980392156862746, b: 0.3450980392156863 } })
+    const xml = makeXml({
+      'Ansi 0 Color': { r: 0.2823529411764706, g: 0.30980392156862746, b: 0.3450980392156863 },
+    })
     const theme = parseItermColors(xml)
     expect(theme.inputBg).toBe('#484f58')
     expect(theme.codeBg).toBe('#484f58')
   })
 
   it('maps Ansi 3 Color to accent and ansiYellow', () => {
-    const xml = makeXml({ 'Ansi 3 Color': { r: 0.8235294117647058, g: 0.6, b: 0.13333333333333333 } })
+    const xml = makeXml({
+      'Ansi 3 Color': { r: 0.8235294117647058, g: 0.6, b: 0.13333333333333333 },
+    })
     const theme = parseItermColors(xml)
     expect(theme.accent).toBe('#d29922')
     expect(theme.ansiYellow).toBe('#d29922')

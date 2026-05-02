@@ -21,7 +21,7 @@ const props = defineProps<{
 
 const titleLabel = inject(TB_TITLE_KEY)
 watchEffect(() => {
-  if (titleLabel) titleLabel.value = props.title ?? 'claude-code'
+  if (titleLabel) titleLabel.value = props.title ?? '✳ Claude Code'
 })
 
 provide(TB_APP_KEY, ref(APP_CONFIG))
@@ -34,7 +34,9 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
     <div v-if="showHeader" class="cc-header">
       <pre class="cc-logo">{{ LOGO }}</pre>
       <div class="cc-meta">
-        <span v-if="version" class="cc-version"><span class="cc-version-label">Claude Code</span> {{ version }}</span>
+        <span v-if="version" class="cc-version"
+          ><span class="cc-version-label">Claude Code</span> {{ version }}</span
+        >
         <span v-if="subtitle" class="cc-subtitle">{{ subtitle }}</span>
         <span v-if="cwd" class="cc-cwd">{{ cwd }}</span>
       </div>
@@ -42,9 +44,13 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
     <div class="cc-body">
       <slot />
     </div>
-    <div class="cc-divider-line">──────────────────────────────────────────────────────────────────────────────</div>
+    <div class="cc-divider-line">
+      ──────────────────────────────────────────────────────────────────────────────
+    </div>
     <div class="cc-waiting-prompt">❯</div>
-    <div class="cc-divider-line">──────────────────────────────────────────────────────────────────────────────</div>
+    <div class="cc-divider-line">
+      ──────────────────────────────────────────────────────────────────────────────
+    </div>
   </div>
 </template>
 
@@ -71,10 +77,18 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
   flex-direction: column;
 }
 
-.cc-version { color: var(--tb-muted); }
-.cc-version-label { color: var(--tb-text); }
-.cc-subtitle { color: var(--tb-secondary); }
-.cc-cwd { color: var(--tb-muted); }
+.cc-version {
+  color: var(--tb-muted);
+}
+.cc-version-label {
+  color: var(--tb-text);
+}
+.cc-subtitle {
+  color: var(--tb-secondary);
+}
+.cc-cwd {
+  color: var(--tb-muted);
+}
 
 .cc-body {
   display: flex;

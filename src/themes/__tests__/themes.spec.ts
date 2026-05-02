@@ -4,10 +4,22 @@ import { defaultTheme, resolveTheme, type ThemeTokens } from '../index'
 describe('defaultTheme', () => {
   it('has all required ThemeTokens keys', () => {
     const keys: (keyof ThemeTokens)[] = [
-      'bg', 'titlebarBg', 'inputBg', 'codeBg',
-      'text', 'secondary', 'muted', 'accent', 'divider',
-      'ansiRed', 'ansiGreen', 'ansiYellow', 'ansiBlue',
-      'ansiMagenta', 'ansiCyan', 'ansiWhite',
+      'bg',
+      'titlebarBg',
+      'inputBg',
+      'codeBg',
+      'text',
+      'secondary',
+      'muted',
+      'accent',
+      'divider',
+      'ansiRed',
+      'ansiGreen',
+      'ansiYellow',
+      'ansiBlue',
+      'ansiMagenta',
+      'ansiCyan',
+      'ansiWhite',
     ]
     for (const key of keys) {
       expect(defaultTheme[key], `missing key: ${key}`).toMatch(/^#[0-9a-f]{6}$/i)
@@ -31,6 +43,8 @@ describe('resolveTheme', () => {
   })
 
   it('throws for an unknown named theme', () => {
-    expect(() => resolveTheme('nonexistent')).toThrow('[terminal-block] Unknown theme: "nonexistent"')
+    expect(() => resolveTheme('nonexistent')).toThrow(
+      '[terminal-block] Unknown theme: "nonexistent"',
+    )
   })
 })

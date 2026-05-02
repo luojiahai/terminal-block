@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-const props = withDefaults(
-  defineProps<{ done?: boolean; verb?: string }>(),
-  { done: false, verb: 'thinking' },
-)
+const props = withDefaults(defineProps<{ done?: boolean; verb?: string }>(), {
+  done: false,
+  verb: 'thinking',
+})
 
-const presentText = computed(
-  () => `${props.verb.charAt(0).toUpperCase() + props.verb.slice(1)}...`,
-)
+const presentText = computed(() => `${props.verb.charAt(0).toUpperCase() + props.verb.slice(1)}...`)
 </script>
 
 <template>

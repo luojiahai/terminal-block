@@ -29,7 +29,11 @@ function makeXmlFile(entries: Record<string, { r: number; g: number; b: number }
 describe('loadItermColorsFile', () => {
   it('resolves with parsed theme tokens', async () => {
     const file = makeXmlFile({
-      'Background Color': { r: 0.00392156862745098, g: 0.01568627450980392, b: 0.03529411764705882 },
+      'Background Color': {
+        r: 0.00392156862745098,
+        g: 0.01568627450980392,
+        b: 0.03529411764705882,
+      },
       'Ansi 1 Color': { r: 1, g: 0.48235294117647065, b: 0.44705882352941173 },
     })
     const theme = await loadItermColorsFile(file)
@@ -39,7 +43,11 @@ describe('loadItermColorsFile', () => {
   })
 
   it('rejects when the XML has no root dict', async () => {
-    const file = new File(['<plist version="1.0"></plist>'], 'bad.itermcolors', { type: 'text/xml' })
-    await expect(loadItermColorsFile(file)).rejects.toThrow('[terminal-block] Invalid .itermcolors XML')
+    const file = new File(['<plist version="1.0"></plist>'], 'bad.itermcolors', {
+      type: 'text/xml',
+    })
+    await expect(loadItermColorsFile(file)).rejects.toThrow(
+      '[terminal-block] Invalid .itermcolors XML',
+    )
   })
 })

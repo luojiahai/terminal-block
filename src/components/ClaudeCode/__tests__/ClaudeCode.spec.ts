@@ -62,8 +62,6 @@ describe('ClaudeCode', () => {
   })
 
   it('does not throw when used without TB_TITLE_KEY (no TerminalBlock parent)', () => {
-    expect(() =>
-      mount(ClaudeCodeComponent, { props: {} }),
-    ).not.toThrow()
+    expect(() => mount(ClaudeCodeComponent, { props: {} })).not.toThrow()
   })
 })

@@ -10,7 +10,9 @@ const textStyle = computed(() => ({ color: `var(${turnConfig.value.textColor})` 
 
 <template>
   <div class="bash-input">
-    <span v-if="turnConfig.glyph" class="bash-glyph" :style="glyphStyle">{{ turnConfig.glyph }}</span>
+    <span v-if="turnConfig.glyph" class="bash-glyph" :style="glyphStyle">{{
+      turnConfig.glyph
+    }}</span>
     <span class="bash-input-text" :style="textStyle"><slot /></span>
   </div>
 </template>

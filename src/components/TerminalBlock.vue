@@ -10,10 +10,12 @@ const props = defineProps<{
 const titleLabel = ref('')
 provide(TB_TITLE_KEY, titleLabel)
 
-const mergedTheme = computed((): ThemeTokens => ({
-  ...defaultTheme,
-  ...(props.theme ? resolveTheme(props.theme) : {}),
-}))
+const mergedTheme = computed(
+  (): ThemeTokens => ({
+    ...defaultTheme,
+    ...(props.theme ? resolveTheme(props.theme) : {}),
+  }),
+)
 
 const cssVars = computed(() => ({
   '--tb-bg': mergedTheme.value.bg,
@@ -73,9 +75,15 @@ const cssVars = computed(() => ({
   display: inline-block;
 }
 
-.tb-dot--red { background-color: #ff5f57; }
-.tb-dot--yellow { background-color: #febc2e; }
-.tb-dot--green { background-color: #28c840; }
+.tb-dot--red {
+  background-color: #ff5f57;
+}
+.tb-dot--yellow {
+  background-color: #febc2e;
+}
+.tb-dot--green {
+  background-color: #28c840;
+}
 
 .tb-app-name {
   color: var(--tb-muted);

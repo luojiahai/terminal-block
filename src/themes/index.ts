@@ -22,9 +22,22 @@ export interface ThemeTokens {
 
 const parsedDefault = parseItermColors(githubDarkRaw)
 const REQUIRED_KEYS: (keyof ThemeTokens)[] = [
-  'bg', 'titlebarBg', 'inputBg', 'codeBg', 'text', 'secondary',
-  'muted', 'accent', 'divider', 'ansiRed', 'ansiGreen', 'ansiYellow',
-  'ansiBlue', 'ansiMagenta', 'ansiCyan', 'ansiWhite',
+  'bg',
+  'titlebarBg',
+  'inputBg',
+  'codeBg',
+  'text',
+  'secondary',
+  'muted',
+  'accent',
+  'divider',
+  'ansiRed',
+  'ansiGreen',
+  'ansiYellow',
+  'ansiBlue',
+  'ansiMagenta',
+  'ansiCyan',
+  'ansiWhite',
 ]
 const missing = REQUIRED_KEYS.filter((k) => parsedDefault[k] == null)
 if (missing.length) {

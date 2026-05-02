@@ -31,8 +31,6 @@ describe('Bash', () => {
   })
 
   it('does not throw when used without TB_TITLE_KEY (no TerminalBlock parent)', () => {
-    expect(() =>
-      mount(BashComponent, { props: {} }),
-    ).not.toThrow()
+    expect(() => mount(BashComponent, { props: {} })).not.toThrow()
   })
 })
