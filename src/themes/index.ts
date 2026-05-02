@@ -24,11 +24,16 @@ export interface ThemeTokens {
 export const TB_THEME_KEY: InjectionKey<Ref<ThemeTokens>> = Symbol('tbTheme')
 
 const parsedDefault = parseItermColors(githubDarkRaw)
-export const defaultTheme: ThemeTokens = {
-  inputBg: '#484f58',
-  codeBg: '#484f58',
-  ...parsedDefault,
-} as ThemeTokens
+const REQUIRED_KEYS: (keyof ThemeTokens)[] = [
+  'bg', 'titlebarBg', 'inputBg', 'codeBg', 'text', 'secondary',
+  'muted', 'accent', 'divider', 'ansiRed', 'ansiGreen', 'ansiYellow',
+  'ansiBlue', 'ansiMagenta', 'ansiCyan', 'ansiWhite',
+]
+const missing = REQUIRED_KEYS.filter((k) => parsedDefault[k] == null)
+if (missing.length) {
+  throw new Error(`[terminal-block] github-dark.itermcolors is missing keys: ${missing.join(', ')}`)
+}
+export const defaultTheme = parsedDefault as ThemeTokens
 
 const NAMED_THEMES: Record<string, Partial<ThemeTokens>> = {
   default: defaultTheme,
