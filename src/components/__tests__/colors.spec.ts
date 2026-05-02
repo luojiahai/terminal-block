@@ -13,34 +13,34 @@ function mountColor(Component: object, slot = 'text') {
 }
 
 describe('color components', () => {
-  it('<Red> renders span with --tb-ansi-red var', () => {
+  it('<Red> renders span with --terminal-block-ansi-red var', () => {
     const wrapper = mountColor(Red, 'error')
     expect(wrapper.element.tagName).toBe('SPAN')
-    expect(wrapper.element.getAttribute('style')).toContain('--tb-ansi-red')
+    expect(wrapper.element.getAttribute('style')).toContain('--terminal-block-ansi-red')
     expect(wrapper.text()).toBe('error')
   })
 
-  it('<Green> renders span with --tb-ansi-green var', () => {
-    expect(mountColor(Green).element.getAttribute('style')).toContain('--tb-ansi-green')
+  it('<Green> renders span with --terminal-block-ansi-green var', () => {
+    expect(mountColor(Green).element.getAttribute('style')).toContain('--terminal-block-ansi-green')
   })
 
-  it('<Yellow> renders span with --tb-ansi-yellow var', () => {
-    expect(mountColor(Yellow).element.getAttribute('style')).toContain('--tb-ansi-yellow')
+  it('<Yellow> renders span with --terminal-block-ansi-yellow var', () => {
+    expect(mountColor(Yellow).element.getAttribute('style')).toContain('--terminal-block-ansi-yellow')
   })
 
-  it('<Blue> renders span with --tb-ansi-blue var', () => {
-    expect(mountColor(Blue).element.getAttribute('style')).toContain('--tb-ansi-blue')
+  it('<Blue> renders span with --terminal-block-ansi-blue var', () => {
+    expect(mountColor(Blue).element.getAttribute('style')).toContain('--terminal-block-ansi-blue')
   })
 
-  it('<Magenta> renders span with --tb-ansi-magenta var', () => {
-    expect(mountColor(Magenta).element.getAttribute('style')).toContain('--tb-ansi-magenta')
+  it('<Magenta> renders span with --terminal-block-ansi-magenta var', () => {
+    expect(mountColor(Magenta).element.getAttribute('style')).toContain('--terminal-block-ansi-magenta')
   })
 
-  it('<Cyan> renders span with --tb-ansi-cyan var', () => {
-    expect(mountColor(Cyan).element.getAttribute('style')).toContain('--tb-ansi-cyan')
+  it('<Cyan> renders span with --terminal-block-ansi-cyan var', () => {
+    expect(mountColor(Cyan).element.getAttribute('style')).toContain('--terminal-block-ansi-cyan')
   })
 
-  it('<White> renders span with --tb-ansi-white var', () => {
-    expect(mountColor(White).element.getAttribute('style')).toContain('--tb-ansi-white')
+  it('<White> renders span with --terminal-block-ansi-white var', () => {
+    expect(mountColor(White).element.getAttribute('style')).toContain('--terminal-block-ansi-white')
   })
 })

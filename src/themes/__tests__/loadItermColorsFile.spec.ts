@@ -38,7 +38,7 @@ describe('loadItermColorsFile', () => {
     })
     const theme = await loadItermColorsFile(file)
     expect(theme.bg).toBe('#010409')
-    expect(theme.titlebarBg).toBe('#010409')
+    expect(theme.headerBg).toBe('#010409')
     expect(theme.ansiRed).toBe('#ff7b72')
   })
 

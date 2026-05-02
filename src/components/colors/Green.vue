@@ -1,3 +1,3 @@
 <template>
-  <span style="color: var(--tb-ansi-green)"><slot /></span>
+  <span style="color: var(--terminal-block-ansi-green)"><slot /></span>
 </template>

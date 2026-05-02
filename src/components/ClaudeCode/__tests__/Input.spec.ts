@@ -6,8 +6,8 @@ import { TB_APP_KEY, type AppConfig } from '@/apps'
 
 const config: AppConfig = {
   id: 'claude-code',
-  inputTurn: { glyph: '❯', glyphColor: '--tb-secondary', textColor: '--tb-text', blockBg: true },
-  outputTurn: { glyph: '⏺', glyphColor: '--tb-text', textColor: '--tb-text', blockBg: false },
+  inputTurn: { glyph: '❯', glyphColor: '--terminal-block-secondary', textColor: '--terminal-block-text', blockBg: true },
+  outputTurn: { glyph: '⏺', glyphColor: '--terminal-block-text', textColor: '--terminal-block-text', blockBg: false },
 }
 
 function mountInput(slot = 'test command') {
@@ -19,11 +19,11 @@ function mountInput(slot = 'test command') {
 
 describe('ClaudeCode Input', () => {
   it('renders the ❯ glyph', () => {
-    expect(mountInput().find('.cc-glyph').text()).toBe('❯')
+    expect(mountInput().find('.claude-code-glyph').text()).toBe('❯')
   })
 
   it('applies block background class', () => {
-    expect(mountInput().find('.cc-input').classes()).toContain('cc-input--block')
+    expect(mountInput().find('.claude-code-input').classes()).toContain('claude-code-input-block')
   })
 
   it('renders slot content', () => {

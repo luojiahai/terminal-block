@@ -25,7 +25,7 @@ function makeXml(entries: Record<string, { r: number; g: number; b: number }>): 
 }
 
 describe('parseItermColors', () => {
-  it('maps Background Color to bg and titlebarBg', () => {
+  it('maps Background Color to bg and headerBg', () => {
     const xml = makeXml({
       'Background Color': {
         r: 0.00392156862745098,
@@ -35,7 +35,7 @@ describe('parseItermColors', () => {
     })
     const theme = parseItermColors(xml)
     expect(theme.bg).toBe('#010409')
-    expect(theme.titlebarBg).toBe('#010409')
+    expect(theme.headerBg).toBe('#010409')
   })
 
   it('maps Foreground Color to text', () => {

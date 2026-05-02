@@ -3,7 +3,7 @@ import { parseItermColors } from './parse-iterm'
 
 export interface ThemeTokens {
   bg: string
-  titlebarBg: string
+  headerBg: string
   inputBg: string
   codeBg: string
   text: string
@@ -23,7 +23,7 @@ export interface ThemeTokens {
 const parsedDefault = parseItermColors(githubDarkRaw)
 const REQUIRED_KEYS: (keyof ThemeTokens)[] = [
   'bg',
-  'titlebarBg',
+  'headerBg',
   'inputBg',
   'codeBg',
   'text',

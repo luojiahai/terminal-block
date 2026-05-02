@@ -5,7 +5,7 @@ describe('defaultTheme', () => {
   it('has all required ThemeTokens keys', () => {
     const keys: (keyof ThemeTokens)[] = [
       'bg',
-      'titlebarBg',
+      'headerBg',
       'inputBg',
       'codeBg',
       'text',

@@ -6,8 +6,8 @@ import { TB_APP_KEY, type AppConfig } from '@/apps'
 
 const config: AppConfig = {
   id: 'bash',
-  inputTurn: { glyph: '$', glyphColor: '--tb-secondary', textColor: '--tb-text', blockBg: false },
-  outputTurn: { glyph: null, glyphColor: '--tb-text', textColor: '--tb-text', blockBg: false },
+  inputTurn: { glyph: '$', glyphColor: '--terminal-block-secondary', textColor: '--terminal-block-text', blockBg: false },
+  outputTurn: { glyph: null, glyphColor: '--terminal-block-text', textColor: '--terminal-block-text', blockBg: false },
 }
 
 function mountOutput(slot = 'output text') {

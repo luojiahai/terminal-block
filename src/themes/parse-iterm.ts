@@ -48,7 +48,7 @@ export function parseItermColors(xml: string): Partial<ThemeTokens> {
     switch (name) {
       case 'Background Color':
         result.bg = hex
-        result.titlebarBg = hex
+        result.headerBg = hex
         break
       case 'Foreground Color':
         result.text = hex

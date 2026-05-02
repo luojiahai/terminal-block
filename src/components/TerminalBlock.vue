@@ -18,32 +18,32 @@ const mergedTheme = computed(
 )
 
 const cssVars = computed(() => ({
-  '--tb-bg': mergedTheme.value.bg,
-  '--tb-titlebar-bg': mergedTheme.value.titlebarBg,
-  '--tb-input-bg': mergedTheme.value.inputBg,
-  '--tb-code-bg': mergedTheme.value.codeBg,
-  '--tb-text': mergedTheme.value.text,
-  '--tb-secondary': mergedTheme.value.secondary,
-  '--tb-muted': mergedTheme.value.muted,
-  '--tb-accent': mergedTheme.value.accent,
-  '--tb-divider': mergedTheme.value.divider,
-  '--tb-ansi-red': mergedTheme.value.ansiRed,
-  '--tb-ansi-green': mergedTheme.value.ansiGreen,
-  '--tb-ansi-yellow': mergedTheme.value.ansiYellow,
-  '--tb-ansi-blue': mergedTheme.value.ansiBlue,
-  '--tb-ansi-magenta': mergedTheme.value.ansiMagenta,
-  '--tb-ansi-cyan': mergedTheme.value.ansiCyan,
-  '--tb-ansi-white': mergedTheme.value.ansiWhite,
+  '--terminal-block-bg': mergedTheme.value.bg,
+  '--terminal-block-header-bg': mergedTheme.value.headerBg,
+  '--terminal-block-input-bg': mergedTheme.value.inputBg,
+  '--terminal-block-code-bg': mergedTheme.value.codeBg,
+  '--terminal-block-text': mergedTheme.value.text,
+  '--terminal-block-secondary': mergedTheme.value.secondary,
+  '--terminal-block-muted': mergedTheme.value.muted,
+  '--terminal-block-accent': mergedTheme.value.accent,
+  '--terminal-block-divider': mergedTheme.value.divider,
+  '--terminal-block-ansi-red': mergedTheme.value.ansiRed,
+  '--terminal-block-ansi-green': mergedTheme.value.ansiGreen,
+  '--terminal-block-ansi-yellow': mergedTheme.value.ansiYellow,
+  '--terminal-block-ansi-blue': mergedTheme.value.ansiBlue,
+  '--terminal-block-ansi-magenta': mergedTheme.value.ansiMagenta,
+  '--terminal-block-ansi-cyan': mergedTheme.value.ansiCyan,
+  '--terminal-block-ansi-white': mergedTheme.value.ansiWhite,
 }))
 </script>
 
 <template>
   <div class="terminal-block" :style="cssVars">
-    <div class="tb-titlebar">
-      <span class="tb-dot tb-dot--red" />
-      <span class="tb-dot tb-dot--yellow" />
-      <span class="tb-dot tb-dot--green" />
-      <span class="tb-app-name">{{ titleLabel }}</span>
+    <div class="terminal-block-header">
+      <span class="terminal-block-dot terminal-block-dot--red" />
+      <span class="terminal-block-dot terminal-block-dot--yellow" />
+      <span class="terminal-block-dot terminal-block-dot--green" />
+      <span class="terminal-block-app-name">{{ titleLabel }}</span>
     </div>
     <slot />
   </div>
@@ -51,8 +51,8 @@ const cssVars = computed(() => ({
 
 <style scoped>
 .terminal-block {
-  background-color: var(--tb-bg);
-  color: var(--tb-text);
+  background-color: var(--terminal-block-bg);
+  color: var(--terminal-block-text);
   font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
   font-size: 14px;
   line-height: 1;
@@ -60,42 +60,33 @@ const cssVars = computed(() => ({
   overflow: hidden;
 }
 
-.tb-titlebar {
+.terminal-block-header {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px 14px;
-  background-color: var(--tb-titlebar-bg);
+  gap: 8px;
+  padding: 16px;
+  background-color: var(--terminal-block-header-bg);
 }
 
-.tb-dot {
+.terminal-block-dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   display: inline-block;
 }
 
-.tb-dot--red {
+.terminal-block-dot--red {
   background-color: #ff5f57;
 }
-.tb-dot--yellow {
+.terminal-block-dot--yellow {
   background-color: #febc2e;
 }
-.tb-dot--green {
+.terminal-block-dot--green {
   background-color: #28c840;
 }
 
-.tb-app-name {
-  color: var(--tb-muted);
+.terminal-block-app-name {
+  color: var(--terminal-block-muted);
   margin-left: 8px;
-  font-size: 12px;
-}
-
-.terminal-block :deep(code) {
-  background: var(--tb-code-bg);
-  color: var(--tb-accent);
-  padding: 1px 5px;
-  border-radius: 3px;
-  font-size: 0.9em;
 }
 </style>

@@ -8,8 +8,8 @@ const LOGO = ` ▐▛███▜▌
 
 const APP_CONFIG: AppConfig = {
   id: 'claude-code',
-  inputTurn: { glyph: '❯', glyphColor: '--tb-secondary', textColor: '--tb-text', blockBg: true },
-  outputTurn: { glyph: '⏺', glyphColor: '--tb-text', textColor: '--tb-text', blockBg: false },
+  inputTurn: { glyph: '❯', glyphColor: '--terminal-block-secondary', textColor: '--terminal-block-text', blockBg: true },
+  outputTurn: { glyph: '⏺', glyphColor: '--terminal-block-text', textColor: '--terminal-block-text', blockBg: false },
 }
 
 const props = defineProps<{
@@ -31,24 +31,25 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
 
 <template>
   <div class="claude-code">
-    <div v-if="showHeader" class="cc-header">
-      <pre class="cc-logo">{{ LOGO }}</pre>
-      <div class="cc-meta">
-        <span v-if="version" class="cc-version"
-          ><span class="cc-version-label">Claude Code</span> {{ version }}</span
-        >
-        <span v-if="subtitle" class="cc-subtitle">{{ subtitle }}</span>
-        <span v-if="cwd" class="cc-cwd">{{ cwd }}</span>
+    <div v-if="showHeader" class="claude-code-header">
+      <pre class="claude-code-logo">{{ LOGO }}</pre>
+      <div class="claude-code-meta">
+        <div class="claude-code-title-line">
+          <span class="claude-code-label">Claude Code</span>
+          <span v-if="version" class="claude-code-version">{{ version }}</span>
+        </div>
+        <span v-if="subtitle" class="claude-code-subtitle">{{ subtitle }}</span>
+        <span v-if="cwd" class="claude-code-cwd">{{ cwd }}</span>
       </div>
     </div>
-    <div class="cc-body">
+    <div class="claude-code-body">
       <slot />
     </div>
-    <div class="cc-divider-line">
+    <div class="claude-code-divider-line">
       ──────────────────────────────────────────────────────────────────────────────
     </div>
-    <div class="cc-waiting-prompt">❯</div>
-    <div class="cc-divider-line">
+    <div class="claude-code-waiting-prompt">❯</div>
+    <div class="claude-code-divider-line">
       ──────────────────────────────────────────────────────────────────────────────
     </div>
   </div>
@@ -56,54 +57,58 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
 
 <style scoped>
 .claude-code {
-  --tb-accent: #d97757;
+  --terminal-block-accent: #d97757;
   padding: 8px;
 }
 
-.cc-header {
+.claude-code-header {
   display: flex;
   align-items: flex-start;
   gap: 16px;
 }
 
-.cc-logo {
+.claude-code-logo {
   margin: 0;
   white-space: pre;
-  color: var(--tb-accent);
+  color: var(--terminal-block-accent);
 }
 
-.cc-meta {
+.claude-code-meta {
   display: flex;
   flex-direction: column;
 }
 
-.cc-version {
-  color: var(--tb-muted);
+.claude-code-title-line {
+  display: flex;
+  gap: 4px;
 }
-.cc-version-label {
-  color: var(--tb-text);
+.claude-code-label {
+  color: var(--terminal-block-text);
 }
-.cc-subtitle {
-  color: var(--tb-secondary);
+.claude-code-version {
+  color: var(--terminal-block-muted);
 }
-.cc-cwd {
-  color: var(--tb-muted);
+.claude-code-subtitle {
+  color: var(--terminal-block-secondary);
+}
+.claude-code-cwd {
+  color: var(--terminal-block-muted);
 }
 
-.cc-body {
+.claude-code-body {
   display: flex;
   flex-direction: column;
   gap: 1lh;
   padding: 1lh 0;
 }
 
-.cc-divider-line {
-  color: var(--tb-muted);
+.claude-code-divider-line {
+  color: var(--terminal-block-muted);
   overflow: hidden;
   white-space: nowrap;
 }
 
-.cc-waiting-prompt {
-  color: var(--tb-secondary);
+.claude-code-waiting-prompt {
+  color: var(--terminal-block-secondary);
 }
 </style>

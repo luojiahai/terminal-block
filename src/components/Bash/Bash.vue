@@ -4,8 +4,8 @@ import { TB_APP_KEY, TB_TITLE_KEY, type AppConfig } from '@/apps'
 
 const BASH_CONFIG: AppConfig = {
   id: 'bash',
-  inputTurn: { glyph: '$', glyphColor: '--tb-secondary', textColor: '--tb-text', blockBg: false },
-  outputTurn: { glyph: null, glyphColor: '--tb-text', textColor: '--tb-text', blockBg: false },
+  inputTurn: { glyph: '$', glyphColor: '--terminal-block-secondary', textColor: '--terminal-block-text', blockBg: false },
+  outputTurn: { glyph: null, glyphColor: '--terminal-block-text', textColor: '--terminal-block-text', blockBg: false },
 }
 
 const props = defineProps<{ title?: string }>()

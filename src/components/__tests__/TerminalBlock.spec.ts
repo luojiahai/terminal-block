@@ -7,12 +7,12 @@ import { TB_TITLE_KEY } from '@/apps'
 describe('TerminalBlock', () => {
   it('renders the macOS title bar', () => {
     const wrapper = mount(TerminalBlock)
-    expect(wrapper.find('.tb-titlebar').exists()).toBe(true)
+    expect(wrapper.find('.terminal-block-header').exists()).toBe(true)
   })
 
   it('renders 3 traffic-light dots', () => {
     const wrapper = mount(TerminalBlock)
-    expect(wrapper.findAll('.tb-dot')).toHaveLength(3)
+    expect(wrapper.findAll('.terminal-block-dot')).toHaveLength(3)
   })
 
   it('shows title written by child via TB_TITLE_KEY', async () => {
@@ -25,7 +25,7 @@ describe('TerminalBlock', () => {
     })
     const wrapper = mount(TerminalBlock, { slots: { default: TitleWriter } })
     await wrapper.vm.$nextTick()
-    expect(wrapper.find('.tb-app-name').text()).toBe('test-app')
+    expect(wrapper.find('.terminal-block-app-name').text()).toBe('test-app')
   })
 
   it('renders slot content', () => {
@@ -38,8 +38,8 @@ describe('TerminalBlock', () => {
   it('applies CSS custom properties as inline style', () => {
     const wrapper = mount(TerminalBlock)
     const style = wrapper.attributes('style') ?? ''
-    expect(style).toContain('--tb-bg')
-    expect(style).toContain('--tb-text')
+    expect(style).toContain('--terminal-block-bg')
+    expect(style).toContain('--terminal-block-text')
   })
 
   it('has the terminal-block root class (line-height: 1 applied via CSS)', () => {

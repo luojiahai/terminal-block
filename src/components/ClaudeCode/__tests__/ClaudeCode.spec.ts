@@ -30,30 +30,30 @@ describe('ClaudeCode', () => {
 
   it('hides header when no version/subtitle/cwd', () => {
     const { wrapper } = mountClaudeCode()
-    expect(wrapper.find('.cc-header').exists()).toBe(false)
+    expect(wrapper.find('.claude-code-header').exists()).toBe(false)
   })
 
   it('shows header with version', () => {
     const { wrapper } = mountClaudeCode({ version: 'v2.1.0' })
-    expect(wrapper.find('.cc-header').exists()).toBe(true)
-    expect(wrapper.find('.cc-version').text()).toBe('Claude Code v2.1.0')
+    expect(wrapper.find('.claude-code-header').exists()).toBe(true)
+    expect(wrapper.find('.claude-code-version').text()).toBe('Claude Code v2.1.0')
   })
 
   it('shows header with subtitle', () => {
     const { wrapper } = mountClaudeCode({ subtitle: 'Sonnet 4.6' })
-    expect(wrapper.find('.cc-header').exists()).toBe(true)
-    expect(wrapper.find('.cc-subtitle').text()).toBe('Sonnet 4.6')
+    expect(wrapper.find('.claude-code-header').exists()).toBe(true)
+    expect(wrapper.find('.claude-code-subtitle').text()).toBe('Sonnet 4.6')
   })
 
   it('shows header with cwd', () => {
     const { wrapper } = mountClaudeCode({ cwd: '~/workplace' })
-    expect(wrapper.find('.cc-header').exists()).toBe(true)
-    expect(wrapper.find('.cc-cwd').text()).toBe('~/workplace')
+    expect(wrapper.find('.claude-code-header').exists()).toBe(true)
+    expect(wrapper.find('.claude-code-cwd').text()).toBe('~/workplace')
   })
 
   it('always renders the bottom prompt', () => {
     const { wrapper } = mountClaudeCode()
-    expect(wrapper.find('.cc-waiting-prompt').exists()).toBe(true)
+    expect(wrapper.find('.claude-code-waiting-prompt').exists()).toBe(true)
   })
 
   it('renders slot content', () => {

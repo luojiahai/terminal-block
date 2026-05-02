@@ -9,20 +9,20 @@ const textStyle = computed(() => ({ color: `var(${turnConfig.value.textColor})` 
 </script>
 
 <template>
-  <div class="cc-output">
-    <span v-if="turnConfig.glyph" class="cc-glyph" :style="glyphStyle">{{ turnConfig.glyph }}</span>
-    <span class="cc-output-text" :style="textStyle"><slot /></span>
+  <div class="claude-code-output">
+    <span v-if="turnConfig.glyph" class="claude-code-glyph" :style="glyphStyle">{{ turnConfig.glyph }}</span>
+    <span class="claude-code-output-text" :style="textStyle"><slot /></span>
   </div>
 </template>
 
 <style scoped>
-.cc-output {
+.claude-code-output {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.cc-glyph {
+.claude-code-glyph {
   flex-shrink: 0;
   user-select: none;
 }
