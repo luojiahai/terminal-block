@@ -6,13 +6,12 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import dts from 'vite-plugin-dts'
 
-export default defineConfig(({ command }) => ({
+export const sharedConfig = defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    command === 'serve' ? vueDevTools() : null,
     dts({ include: ['src'], exclude: ['src/**/__tests__/**', 'src/App.vue', 'src/main.ts'] }),
-  ].filter(Boolean),
+  ],
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },
@@ -27,4 +26,12 @@ export default defineConfig(({ command }) => ({
       output: { globals: { vue: 'Vue' } },
     },
   },
+})
+
+export default defineConfig(({ command }) => ({
+  ...sharedConfig,
+  plugins: [
+    ...(sharedConfig.plugins as []),
+    command === 'serve' ? vueDevTools() : null,
+  ].filter(Boolean),
 }))
