@@ -1,4 +1,3 @@
-import type { InjectionKey, Ref } from 'vue'
 import githubDarkRaw from './github-dark.itermcolors?raw'
 import { parseItermColors } from './parse-iterm'
 
@@ -20,8 +19,6 @@ export interface ThemeTokens {
   ansiCyan: string
   ansiWhite: string
 }
-
-export const TB_THEME_KEY: InjectionKey<Ref<ThemeTokens>> = Symbol('tbTheme')
 
 const parsedDefault = parseItermColors(githubDarkRaw)
 const REQUIRED_KEYS: (keyof ThemeTokens)[] = [

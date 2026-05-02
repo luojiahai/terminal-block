@@ -11,7 +11,6 @@ export interface AppConfig {
   id: string
   inputTurn: TurnConfig
   outputTurn: TurnConfig
-  supportedTurns: ('InputTurn' | 'OutputTurn' | 'Thinking')[]
 }
 
 export const TB_APP_KEY: InjectionKey<Ref<AppConfig>> = Symbol('tbApp')

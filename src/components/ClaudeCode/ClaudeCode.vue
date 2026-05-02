@@ -8,7 +8,6 @@ const LOGO = `  ╭──────────╮
 
 const APP_CONFIG: AppConfig = {
   id: 'claude-code',
-  supportedTurns: ['InputTurn', 'OutputTurn', 'Thinking'],
   inputTurn: { glyph: '❯', glyphColor: '--tb-secondary', textColor: '--tb-text', blockBg: true },
   outputTurn: { glyph: '⏺', glyphColor: '--tb-text', textColor: '--tb-text', blockBg: false },
 }
@@ -43,9 +42,9 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
     <div class="cc-body">
       <slot />
     </div>
-    <div class="cc-divider-line">────────────────────────────────────────</div>
+    <div class="cc-divider-line" />
     <div class="cc-waiting-prompt">❯</div>
-    <div class="cc-divider-line">────────────────────────────────────────</div>
+    <div class="cc-divider-line" />
   </div>
 </template>
 
@@ -82,9 +81,8 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
 }
 
 .cc-divider-line {
-  color: var(--tb-muted);
-  padding: 0 16px;
-  font-size: 12px;
+  border-top: 1px solid var(--tb-divider);
+  margin: 0 16px;
 }
 
 .cc-waiting-prompt {

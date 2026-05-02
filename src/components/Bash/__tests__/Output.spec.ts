@@ -6,7 +6,6 @@ import { TB_APP_KEY, type AppConfig } from '@/apps'
 
 const config: AppConfig = {
   id: 'bash',
-  supportedTurns: ['InputTurn', 'OutputTurn'],
   inputTurn: { glyph: '$', glyphColor: '--tb-secondary', textColor: '--tb-text', blockBg: false },
   outputTurn: { glyph: null, glyphColor: '--tb-text', textColor: '--tb-text', blockBg: false },
 }

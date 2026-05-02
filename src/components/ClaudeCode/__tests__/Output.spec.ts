@@ -6,7 +6,6 @@ import { TB_APP_KEY, type AppConfig } from '@/apps'
 
 const config: AppConfig = {
   id: 'claude-code',
-  supportedTurns: ['InputTurn', 'OutputTurn', 'Thinking'],
   inputTurn: { glyph: '❯', glyphColor: '--tb-secondary', textColor: '--tb-text', blockBg: true },
   outputTurn: { glyph: '⏺', glyphColor: '--tb-text', textColor: '--tb-text', blockBg: false },
 }

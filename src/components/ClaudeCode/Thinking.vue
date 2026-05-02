@@ -28,11 +28,11 @@ const presentText = computed(
 }
 
 .cc-thinking-glyph {
-  color: #444;
+  color: var(--tb-muted);
   flex-shrink: 0;
 }
 
 .cc-thinking-text {
-  color: #555;
+  color: var(--tb-secondary);
 }
 </style>
