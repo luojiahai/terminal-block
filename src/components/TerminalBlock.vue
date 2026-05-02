@@ -55,7 +55,7 @@ const cssVars = computed(() => ({
 .terminal-block {
   background-color: var(--terminal-block-bg);
   color: var(--terminal-block-text);
-  font-family: monospace;
+  font-family: "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
   font-size: 14px;
   line-height: 1;
   border-radius: 8px;
