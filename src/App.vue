@@ -17,11 +17,7 @@ import Yellow from './components/colors/Yellow.vue'
     "
   >
     <TerminalBlock>
-      <ClaudeCode
-        version="v2.1.126"
-        subtitle="Sonnet 4.6 · API Billing"
-        cwd="~/workplace"
-      >
+      <ClaudeCode>
         <ClaudeCode.Input>hello</ClaudeCode.Input>
         <ClaudeCode.Output>Hey! How can I help you today?</ClaudeCode.Output>
         <ClaudeCode.Thinking done>3s</ClaudeCode.Thinking>

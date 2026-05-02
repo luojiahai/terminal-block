@@ -1,37 +1,40 @@
 <script setup lang="ts">
-import { computed, inject, watchEffect } from 'vue'
+import { inject, watchEffect } from 'vue'
 import { TERMINAL_BLOCK_TITLE_KEY } from '@/components/TerminalBlock.vue'
 
 const LOGO = ` ▐▛███▜▌
 ▝▜█████▛▘
   ▘▘ ▝▝`
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   version?: string
   subtitle?: string
   cwd?: string
   title?: string
-}>()
+}>(), {
+  version: 'v2.1.88',
+  subtitle: 'Opus 4.6 · Max 100x',
+  cwd: '~',
+})
 
 const titleLabel = inject(TERMINAL_BLOCK_TITLE_KEY)
 watchEffect(() => {
   if (titleLabel) titleLabel.value = props.title ?? '✳ Claude Code'
 })
 
-const showHeader = computed(() => !!(props.version || props.subtitle || props.cwd))
 </script>
 
 <template>
   <div class="claude-code">
-    <div v-if="showHeader" class="claude-code-header">
+    <div class="claude-code-header">
       <pre class="claude-code-logo">{{ LOGO }}</pre>
       <div class="claude-code-meta">
         <div class="claude-code-title-line">
           <span class="claude-code-label">Claude Code</span>
-          <span v-if="version" class="claude-code-version">{{ version }}</span>
+          <span class="claude-code-version">{{ version }}</span>
         </div>
-        <span v-if="subtitle" class="claude-code-subtitle">{{ subtitle }}</span>
-        <span v-if="cwd" class="claude-code-cwd">{{ cwd }}</span>
+        <span class="claude-code-subtitle">{{ subtitle }}</span>
+        <span class="claude-code-cwd">{{ cwd }}</span>
       </div>
     </div>
     <div class="claude-code-body">
