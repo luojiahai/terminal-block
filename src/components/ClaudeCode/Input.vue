@@ -18,7 +18,7 @@ const textStyle = computed(() => ({ color: `var(${turnConfig.value.textColor})` 
 <style scoped>
 .cc-input {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 8px;
   padding: 4px 0;
 }

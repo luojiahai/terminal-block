@@ -49,6 +49,10 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
 </template>
 
 <style scoped>
+.claude-code {
+  padding-bottom: 8px;
+}
+
 .cc-header {
   display: flex;
   align-items: flex-start;
@@ -77,12 +81,12 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
 .cc-cwd { color: var(--tb-muted); }
 
 .cc-body {
-  padding: 8px 16px;
+  padding: 8px 4px;
 }
 
 .cc-divider-line {
   color: var(--tb-muted);
-  padding: 0 16px;
+  padding: 0 4px;
   font-size: 12px;
   overflow: hidden;
   white-space: nowrap;
@@ -90,6 +94,6 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
 
 .cc-waiting-prompt {
   color: var(--tb-secondary);
-  padding: 4px 16px;
+  padding: 4px 4px;
 }
 </style>
