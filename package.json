@@ -1,5 +1,8 @@
 {
   "name": "terminal-block",
+  "repository": {
+    "url": "https://github.com/luojiahai/terminal-block"
+  },
   "version": "1.0.1",
   "type": "module",
   "scripts": {
