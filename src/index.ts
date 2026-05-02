@@ -25,3 +25,4 @@ export type { ThemeTokens } from './themes'
 
 // iTerm2 parser
 export { parseItermColors } from './themes/parse-iterm'
+export { loadItermColorsFile } from './themes/load-iterm'
