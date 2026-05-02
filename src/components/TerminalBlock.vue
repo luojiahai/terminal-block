@@ -1,29 +1,19 @@
 <script setup lang="ts">
-import { computed, provide } from 'vue'
-import { resolveApp, TB_APP_KEY, type AppConfig } from '@/apps'
-import { defaultTheme, resolveTheme, TB_THEME_KEY, type ThemeTokens } from '@/themes'
+import { computed, provide, ref } from 'vue'
+import { TB_TITLE_KEY } from '@/apps'
+import { defaultTheme, resolveTheme, type ThemeTokens } from '@/themes'
 
-const props = withDefaults(
-  defineProps<{
-    app?: string | AppConfig
-    theme?: string | Partial<ThemeTokens>
-    version?: string
-    subtitle?: string
-    cwd?: string
-  }>(),
-  { app: 'bash' },
-)
+const props = defineProps<{
+  theme?: string | Partial<ThemeTokens>
+}>()
 
-const resolvedApp = computed(() => resolveApp(props.app!))
+const titleLabel = ref('')
+provide(TB_TITLE_KEY, titleLabel)
 
-const mergedTheme = computed((): ThemeTokens => {
-  const userOverrides = props.theme ? resolveTheme(props.theme) : {}
-  return {
-    ...defaultTheme,
-    ...(resolvedApp.value.themeOverrides ?? {}),
-    ...userOverrides,
-  }
-})
+const mergedTheme = computed((): ThemeTokens => ({
+  ...defaultTheme,
+  ...(props.theme ? resolveTheme(props.theme) : {}),
+}))
 
 const cssVars = computed(() => ({
   '--tb-bg': mergedTheme.value.bg,
@@ -43,14 +33,6 @@ const cssVars = computed(() => ({
   '--tb-ansi-cyan': mergedTheme.value.ansiCyan,
   '--tb-ansi-white': mergedTheme.value.ansiWhite,
 }))
-
-const showHeader = computed(() => !!(props.version || props.subtitle || props.cwd))
-const showBottomPrompt = computed(() =>
-  resolvedApp.value.supportedTurns.includes('Thinking'),
-)
-
-provide(TB_APP_KEY, resolvedApp)
-provide(TB_THEME_KEY, mergedTheme)
 </script>
 
 <template>
@@ -59,31 +41,9 @@ provide(TB_THEME_KEY, mergedTheme)
       <span class="tb-dot tb-dot--red" />
       <span class="tb-dot tb-dot--yellow" />
       <span class="tb-dot tb-dot--green" />
-      <span class="tb-app-name">{{ resolvedApp.id }}</span>
+      <span class="tb-app-name">{{ titleLabel }}</span>
     </div>
-
-    <div v-if="showHeader" class="tb-header">
-      <pre
-        v-if="resolvedApp.header?.logo"
-        class="tb-logo"
-        :style="{ color: `var(${resolvedApp.header.logoColor})` }"
-      >{{ resolvedApp.header.logo }}</pre>
-      <div class="tb-meta">
-        <span v-if="version" class="tb-version">{{ version }}</span>
-        <span v-if="subtitle" class="tb-subtitle">{{ subtitle }}</span>
-        <span v-if="cwd" class="tb-cwd">{{ cwd }}</span>
-      </div>
-    </div>
-
-    <div class="tb-body">
-      <slot />
-    </div>
-
-    <template v-if="showBottomPrompt">
-      <div class="tb-divider-line">────────────────────────────────────────</div>
-      <div class="tb-waiting-prompt">❯</div>
-      <div class="tb-divider-line">────────────────────────────────────────</div>
-    </template>
+    <slot />
   </div>
 </template>
 
@@ -93,6 +53,7 @@ provide(TB_THEME_KEY, mergedTheme)
   color: var(--tb-text);
   font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
   font-size: 14px;
+  line-height: 1;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -120,47 +81,6 @@ provide(TB_THEME_KEY, mergedTheme)
   color: var(--tb-muted);
   margin-left: 8px;
   font-size: 12px;
-}
-
-.tb-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--tb-divider);
-}
-
-.tb-logo {
-  margin: 0;
-  font-size: 11px;
-  line-height: 1.4;
-  white-space: pre;
-}
-
-.tb-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  font-size: 12px;
-}
-
-.tb-version { color: var(--tb-muted); }
-.tb-subtitle { color: var(--tb-secondary); }
-.tb-cwd { color: var(--tb-muted); }
-
-.tb-body {
-  padding: 8px 16px;
-}
-
-.tb-divider-line {
-  color: var(--tb-muted);
-  padding: 0 16px;
-  font-size: 12px;
-}
-
-.tb-waiting-prompt {
-  color: var(--tb-secondary);
-  padding: 4px 16px;
 }
 
 .terminal-block :deep(code) {
