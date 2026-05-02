@@ -93,6 +93,6 @@ const cssVars = computed(() => ({
 }
 
 .terminal-block-body {
-  padding: 8px 8px 1lh;
+  padding: 8px 1lh 1lh;
 }
 </style>
