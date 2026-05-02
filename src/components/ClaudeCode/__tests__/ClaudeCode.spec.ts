@@ -36,7 +36,7 @@ describe('ClaudeCode', () => {
   it('shows header with version', () => {
     const { wrapper } = mountClaudeCode({ version: 'v2.1.0' })
     expect(wrapper.find('.cc-header').exists()).toBe(true)
-    expect(wrapper.find('.cc-version').text()).toBe('v2.1.0')
+    expect(wrapper.find('.cc-version').text()).toBe('Claude Code v2.1.0')
   })
 
   it('shows header with subtitle', () => {

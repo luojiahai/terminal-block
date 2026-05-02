@@ -34,7 +34,7 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
     <div v-if="showHeader" class="cc-header">
       <pre class="cc-logo">{{ LOGO }}</pre>
       <div class="cc-meta">
-        <span v-if="version" class="cc-version">{{ version }}</span>
+        <span v-if="version" class="cc-version"><span class="cc-version-label">Claude Code</span> {{ version }}</span>
         <span v-if="subtitle" class="cc-subtitle">{{ subtitle }}</span>
         <span v-if="cwd" class="cc-cwd">{{ cwd }}</span>
       </div>
@@ -54,7 +54,6 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
   align-items: flex-start;
   gap: 16px;
   padding: 12px 16px;
-  border-bottom: 1px solid var(--tb-divider);
 }
 
 .cc-logo {
@@ -73,6 +72,7 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
 }
 
 .cc-version { color: var(--tb-muted); }
+.cc-version-label { color: var(--tb-text); }
 .cc-subtitle { color: var(--tb-secondary); }
 .cc-cwd { color: var(--tb-muted); }
 
