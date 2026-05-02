@@ -18,9 +18,9 @@ function mountClaudeCode(
 }
 
 describe('ClaudeCode', () => {
-  it('writes "claude-code" to TB_TITLE_KEY by default', () => {
+  it('writes "✳ Claude Code" to TB_TITLE_KEY by default', () => {
     const { titleRef } = mountClaudeCode()
-    expect(titleRef.value).toBe('claude-code')
+    expect(titleRef.value).toBe('✳ Claude Code')
   })
 
   it('writes custom title to TB_TITLE_KEY when title prop is set', () => {
@@ -36,7 +36,8 @@ describe('ClaudeCode', () => {
   it('shows header with version', () => {
     const { wrapper } = mountClaudeCode({ version: 'v2.1.0' })
     expect(wrapper.find('.claude-code-header').exists()).toBe(true)
-    expect(wrapper.find('.claude-code-version').text()).toBe('Claude Code v2.1.0')
+    expect(wrapper.find('.claude-code-label').text()).toBe('Claude Code')
+    expect(wrapper.find('.claude-code-version').text()).toBe('v2.1.0')
   })
 
   it('shows header with subtitle', () => {
