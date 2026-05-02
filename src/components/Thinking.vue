@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, inject, onMounted } from 'vue'
-import { TB_APP_KEY, TB_THEME_KEY } from '@/apps'
+import { TB_APP_KEY } from '@/apps'
+import { TB_THEME_KEY } from '@/themes'
 
 const props = withDefaults(
   defineProps<{
@@ -11,12 +12,12 @@ const props = withDefaults(
 )
 
 const app = inject(TB_APP_KEY)!
-const theme = inject(TB_THEME_KEY)!
+// const theme = inject(TB_THEME_KEY)!
 
 const isSupported = computed(() => app.value.supportedTurns.includes('Thinking'))
 
 onMounted(() => {
-  if (!isSupported.value && import.meta.env.DEV) {
+  if (!isSupported.value) {
     console.warn(`[terminal-block] <Thinking> is not supported in app="${app.value.id}"`)
   }
 })

@@ -5,7 +5,8 @@ import Thinking from '../Thinking.vue'
 import { bash } from '@/apps/bash'
 import { claudeCode } from '@/apps/claude-code'
 import { defaultTheme } from '@/themes'
-import { TB_APP_KEY, TB_THEME_KEY } from '@/apps'
+import { TB_APP_KEY } from '@/apps'
+import { TB_THEME_KEY } from '@/themes'
 
 function mountThinking(
   app: typeof bash | typeof claudeCode,

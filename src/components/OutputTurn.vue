@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, inject } from 'vue'
-import { TB_APP_KEY, TB_THEME_KEY } from '@/apps'
+import { TB_APP_KEY } from '@/apps'
+import { TB_THEME_KEY } from '@/themes'
 
 const app = inject(TB_APP_KEY)!
-const theme = inject(TB_THEME_KEY)!
 
 const turnConfig = computed(() => app.value.outputTurn)
 const glyphStyle = computed(() => ({ color: `var(${turnConfig.value.glyphColor})` }))

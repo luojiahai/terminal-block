@@ -37,7 +37,7 @@ export function parseItermColors(xml: string): Partial<ThemeTokens> {
   for (let i = 0; i < children.length - 1; i += 2) {
     const key = children[i]
     const value = children[i + 1]
-    if (key.tagName !== 'key' || value.tagName !== 'dict') continue
+    if (!key || !value || key.tagName !== 'key' || value.tagName !== 'dict') continue
 
     const name = key.textContent ?? ''
     const { r, g, b } = parseColorDict(value)
