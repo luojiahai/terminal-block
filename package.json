@@ -3,7 +3,7 @@
   "repository": {
     "url": "https://github.com/luojiahai/terminal-block"
   },
-  "version": "0.1.0",
+  "version": "2.0.0",
   "type": "module",
   "files": ["dist"],
   "main": "./dist/terminal-block.umd.cjs",

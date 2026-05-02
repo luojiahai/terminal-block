@@ -1,0 +1,48 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e9]: claude-code
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - generic [ref=e12]: ╭──────────╮ │ ◆ claude │ ╰──────────╯
+          - generic [ref=e13]:
+            - generic [ref=e14]: v2.1.126
+            - generic [ref=e15]: Sonnet 4.6 · API Billing
+            - generic [ref=e16]: ~/workplace
+        - generic [ref=e17]:
+          - generic [ref=e18]:
+            - generic [ref=e19]: ❯
+            - generic [ref=e20]: hello
+          - generic [ref=e21]:
+            - generic [ref=e22]: ⏺
+            - generic [ref=e23]: Hey! How can I help you today?
+          - generic [ref=e24]:
+            - generic [ref=e25]: ✻
+            - generic [ref=e26]: Thought for 3s
+          - generic [ref=e27]:
+            - generic [ref=e28]: ⏺
+            - generic [ref=e29]:
+              - generic [ref=e30]: ✔
+              - text: Build completed in
+              - generic [ref=e31]: 2.3s
+        - generic [ref=e32]: ────────────────────────────────────────
+        - generic [ref=e33]: ❯
+        - generic [ref=e34]: ────────────────────────────────────────
+    - generic [ref=e35]:
+      - generic [ref=e40]: bash
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - generic [ref=e44]: $
+          - generic [ref=e45]: ls -la
+        - generic [ref=e47]: total 24 drwxr-xr-x 8 user staff 256
+        - generic [ref=e48]:
+          - generic [ref=e49]: $
+          - generic [ref=e50]: npm run build
+        - generic [ref=e52]:
+          - generic [ref=e53]: ✘
+          - text: "Build failed: module not found"
+  - generic [ref=e54]:
+    - generic "Toggle devtools panel" [ref=e55] [cursor=pointer]:
+      - img [ref=e56]
+    - generic "Toggle Component Inspector" [ref=e61] [cursor=pointer]:
+      - img [ref=e62]
