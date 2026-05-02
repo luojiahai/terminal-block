@@ -1,17 +1,7 @@
-<script setup lang="ts">
-import { computed, inject } from 'vue'
-import { TB_APP_KEY } from '@/apps'
-
-const app = inject(TB_APP_KEY)!
-const turnConfig = computed(() => app.value.outputTurn)
-const glyphStyle = computed(() => ({ color: `var(${turnConfig.value.glyphColor})` }))
-const textStyle = computed(() => ({ color: `var(${turnConfig.value.textColor})` }))
-</script>
-
 <template>
   <div class="claude-code-output">
-    <span v-if="turnConfig.glyph" class="claude-code-glyph" :style="glyphStyle">{{ turnConfig.glyph }}</span>
-    <span class="claude-code-output-text" :style="textStyle"><slot /></span>
+    <span class="claude-code-glyph">⏺</span>
+    <span class="claude-code-output-text"><slot /></span>
   </div>
 </template>
 
@@ -24,6 +14,10 @@ const textStyle = computed(() => ({ color: `var(${turnConfig.value.textColor})` 
 
 .claude-code-glyph {
   flex-shrink: 0;
-  user-select: none;
+  color: var(--terminal-block-text);
+}
+
+.claude-code-output-text {
+  color: var(--terminal-block-text);
 }
 </style>

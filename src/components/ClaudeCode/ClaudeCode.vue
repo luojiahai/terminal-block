@@ -1,16 +1,10 @@
 <script setup lang="ts">
-import { computed, inject, provide, ref, watchEffect } from 'vue'
-import { TB_APP_KEY, TB_TITLE_KEY, type AppConfig } from '@/apps'
+import { computed, inject, watchEffect } from 'vue'
+import { TB_TITLE_KEY } from '@/apps'
 
 const LOGO = ` ▐▛███▜▌
 ▝▜█████▛▘
   ▘▘ ▝▝`
-
-const APP_CONFIG: AppConfig = {
-  id: 'claude-code',
-  inputTurn: { glyph: '❯', glyphColor: '--terminal-block-secondary', textColor: '--terminal-block-text', blockBg: true },
-  outputTurn: { glyph: '⏺', glyphColor: '--terminal-block-text', textColor: '--terminal-block-text', blockBg: false },
-}
 
 const props = defineProps<{
   version?: string
@@ -23,8 +17,6 @@ const titleLabel = inject(TB_TITLE_KEY)
 watchEffect(() => {
   if (titleLabel) titleLabel.value = props.title ?? '✳ Claude Code'
 })
-
-provide(TB_APP_KEY, ref(APP_CONFIG))
 
 const showHeader = computed(() => !!(props.version || props.subtitle || props.cwd))
 </script>
@@ -67,7 +59,6 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
 }
 
 .claude-code-logo {
-  margin: 0;
   white-space: pre;
   color: var(--terminal-block-accent);
 }
@@ -77,9 +68,9 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
   flex-direction: column;
 }
 
-.claude-code-title-line {
+.claude-code-title-line { 
   display: flex;
-  gap: 4px;
+  gap: 1ch;
 }
 .claude-code-label {
   color: var(--terminal-block-text);

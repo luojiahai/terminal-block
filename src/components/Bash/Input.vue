@@ -1,19 +1,7 @@
-<script setup lang="ts">
-import { computed, inject } from 'vue'
-import { TB_APP_KEY } from '@/apps'
-
-const app = inject(TB_APP_KEY)!
-const turnConfig = computed(() => app.value.inputTurn)
-const glyphStyle = computed(() => ({ color: `var(${turnConfig.value.glyphColor})` }))
-const textStyle = computed(() => ({ color: `var(${turnConfig.value.textColor})` }))
-</script>
-
 <template>
   <div class="bash-input">
-    <span v-if="turnConfig.glyph" class="bash-glyph" :style="glyphStyle">{{
-      turnConfig.glyph
-    }}</span>
-    <span class="bash-input-text" :style="textStyle"><slot /></span>
+    <span class="bash-glyph">$</span>
+    <span class="bash-input-text"><slot /></span>
   </div>
 </template>
 
@@ -27,6 +15,10 @@ const textStyle = computed(() => ({ color: `var(${turnConfig.value.textColor})` 
 
 .bash-glyph {
   flex-shrink: 0;
-  user-select: none;
+  color: var(--terminal-block-secondary);
+}
+
+.bash-input-text {
+  color: var(--terminal-block-text);
 }
 </style>
