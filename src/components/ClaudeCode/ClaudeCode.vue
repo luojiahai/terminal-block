@@ -58,7 +58,6 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
 <style scoped>
 .claude-code {
   --terminal-block-accent: #d97757;
-  padding: 8px;
 }
 
 .claude-code-header {

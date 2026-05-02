@@ -27,7 +27,4 @@ provide(TB_APP_KEY, ref(BASH_CONFIG))
 </template>
 
 <style scoped>
-.bash-body {
-  padding: 8px 16px;
-}
 </style>

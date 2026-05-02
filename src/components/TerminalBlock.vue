@@ -45,7 +45,9 @@ const cssVars = computed(() => ({
       <span class="terminal-block-dot terminal-block-dot--green" />
       <span class="terminal-block-app-name">{{ titleLabel }}</span>
     </div>
-    <slot />
+    <div class="terminal-block-body">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -64,7 +66,7 @@ const cssVars = computed(() => ({
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 16px;
+  padding: 1lh;
   background-color: var(--terminal-block-header-bg);
 }
 
@@ -88,5 +90,9 @@ const cssVars = computed(() => ({
 .terminal-block-app-name {
   color: var(--terminal-block-muted);
   margin-left: 8px;
+}
+
+.terminal-block-body {
+  padding: 8px 8px 1lh;
 }
 </style>
