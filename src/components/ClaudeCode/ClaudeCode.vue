@@ -81,7 +81,10 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
 .cc-cwd { color: var(--tb-muted); }
 
 .cc-body {
-  padding: 8px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 8px;
 }
 
 .cc-divider-line {

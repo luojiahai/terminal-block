@@ -20,7 +20,6 @@ const textStyle = computed(() => ({ color: `var(${turnConfig.value.textColor})` 
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 4px 0;
 }
 
 .cc-input--block {
