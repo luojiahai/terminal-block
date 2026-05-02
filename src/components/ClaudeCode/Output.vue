@@ -8,7 +8,7 @@
 <style scoped>
 .claude-code-output {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 8px;
 }
 

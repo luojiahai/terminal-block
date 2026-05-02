@@ -8,7 +8,7 @@
 <style scoped>
 .claude-code-input {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 8px;
   background-color: color-mix(in srgb, var(--terminal-block-input-bg), transparent 50%);
 }
