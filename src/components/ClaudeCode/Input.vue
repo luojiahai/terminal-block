@@ -19,14 +19,11 @@ const textStyle = computed(() => ({ color: `var(${turnConfig.value.textColor})` 
 .cc-input {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
 }
 
 .cc-input--block {
   background-color: var(--tb-input-bg);
-  padding: 6px 12px;
-  border-radius: 4px;
-  margin: 4px 0;
 }
 
 .cc-glyph {

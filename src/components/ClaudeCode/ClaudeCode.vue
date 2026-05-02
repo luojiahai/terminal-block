@@ -2,9 +2,9 @@
 import { computed, inject, provide, ref, watchEffect } from 'vue'
 import { TB_APP_KEY, TB_TITLE_KEY, type AppConfig } from '@/apps'
 
-const LOGO = `  ╭──────────╮
-  │ ◆ claude │
-  ╰──────────╯`
+const LOGO = ` ▐▛███▜▌
+▝▜█████▛▘
+  ▘▘ ▝▝`
 
 const APP_CONFIG: AppConfig = {
   id: 'claude-code',
@@ -50,20 +50,18 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
 
 <style scoped>
 .claude-code {
-  padding-bottom: 8px;
+  --tb-accent: #d97757;
+  padding: 8px;
 }
 
 .cc-header {
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  padding: 12px 16px;
 }
 
 .cc-logo {
   margin: 0;
-  font-size: 11px;
-  line-height: 1.4;
   white-space: pre;
   color: var(--tb-accent);
 }
@@ -71,8 +69,6 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
 .cc-meta {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  font-size: 12px;
 }
 
 .cc-version { color: var(--tb-muted); }
@@ -83,20 +79,17 @@ const showHeader = computed(() => !!(props.version || props.subtitle || props.cw
 .cc-body {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 16px 8px;
+  gap: 1lh;
+  padding: 1lh 0;
 }
 
 .cc-divider-line {
   color: var(--tb-muted);
-  padding: 0 4px;
-  font-size: 12px;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .cc-waiting-prompt {
   color: var(--tb-secondary);
-  padding: 4px 4px;
 }
 </style>
