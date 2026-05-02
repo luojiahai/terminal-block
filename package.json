@@ -3,8 +3,19 @@
   "repository": {
     "url": "https://github.com/luojiahai/terminal-block"
   },
-  "version": "1.0.1",
+  "version": "0.1.0",
   "type": "module",
+  "files": ["dist"],
+  "main": "./dist/terminal-block.umd.cjs",
+  "module": "./dist/terminal-block.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/terminal-block.js",
+      "require": "./dist/terminal-block.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
@@ -18,8 +29,8 @@
     "lint:eslint": "eslint . --fix --cache",
     "format": "prettier --write --experimental-cli src/"
   },
-  "dependencies": {
-    "vue": "^3.5.32"
+  "peerDependencies": {
+    "vue": "^3.5.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",
@@ -44,6 +55,7 @@
     "prettier": "3.8.3",
     "typescript": "~6.0.0",
     "vite": "^8.0.8",
+    "vite-plugin-dts": "^5.0.0",
     "vite-plugin-vue-devtools": "^8.1.1",
     "vitest": "^4.1.4",
     "vue-tsc": "^3.2.6"
