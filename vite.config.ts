@@ -19,7 +19,10 @@ export const sharedConfig = defineConfig({
     }),
   ],
   resolve: {
-    alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      'terminal-block': fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+    },
   },
   build: {
     lib: {

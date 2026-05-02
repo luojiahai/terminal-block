@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import TerminalBlock from './components/TerminalBlock.vue'
-import { ClaudeCode } from './components/ClaudeCode'
-import { Bash } from './components/Bash'
-import Yellow from './components/colors/Yellow.vue'
+import { TerminalBlock, ClaudeCode, Bash, Yellow } from 'terminal-block'
 </script>
 
 <template>
