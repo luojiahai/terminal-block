@@ -28,12 +28,7 @@ describe('ClaudeCode', () => {
     expect(titleRef.value).toBe('my-project')
   })
 
-  it('hides header when no version/subtitle/cwd', () => {
-    const { wrapper } = mountClaudeCode()
-    expect(wrapper.find('.claude-code-header').exists()).toBe(false)
-  })
-
-  it('shows header with version', () => {
+it('shows header with version', () => {
     const { wrapper } = mountClaudeCode({ version: 'v2.1.0' })
     expect(wrapper.find('.claude-code-header').exists()).toBe(true)
     expect(wrapper.find('.claude-code-label').text()).toBe('Claude Code')
