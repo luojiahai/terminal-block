@@ -2,7 +2,10 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Thinking from '../Thinking.vue'
 
-function mountThinking(props: { done?: boolean; verbs?: string[] } = {}, slot?: string) {
+function mountThinking(
+  props: { done?: boolean; verbs?: string[]; statusText?: string } = {},
+  slot?: string,
+) {
   return mount(Thinking, {
     props,
     slots: slot ? { default: slot } : undefined,
@@ -73,5 +76,76 @@ describe('ClaudeCode Thinking — done', () => {
     const glyph = wrapper.find('.claude-code-thinking-glyph')
     expect(glyph.exists()).toBe(true)
     expect(glyph.classes()).not.toContain('active')
+  })
+})
+
+describe('ClaudeCode Thinking — stats', () => {
+  beforeEach(() => { vi.useFakeTimers() })
+  afterEach(() => { vi.useRealTimers() })
+
+  it('renders stats when done=false', () => {
+    const wrapper = mountThinking()
+    expect(wrapper.text()).toMatch(/\(\d+s · ↓ \d+ tokens\)/)
+  })
+
+  it('does not render stats when done=true', () => {
+    expect(mountThinking({ done: true }).text()).not.toMatch(/\(.*tokens.*\)/)
+  })
+
+  it('appends statusText when provided', () => {
+    const wrapper = mountThinking({ statusText: 'almost done thinking' })
+    expect(wrapper.text()).toContain('almost done thinking')
+    expect(wrapper.text()).toMatch(/\(.*· almost done thinking\)/)
+  })
+
+  it('does not include statusText separator when statusText is absent', () => {
+    const wrapper = mountThinking()
+    expect(wrapper.text()).toMatch(/\(\d+s · ↓ \d+ tokens\)$/)
+  })
+
+  it('increments seconds after 1s', async () => {
+    const wrapper = mountThinking()
+    vi.advanceTimersByTime(1000)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.text()).toContain('1s')
+  })
+
+  it('shows 1m after 60s', async () => {
+    const wrapper = mountThinking()
+    vi.advanceTimersByTime(60000)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.text()).toMatch(/\(1m · ↓/)
+  })
+
+  it('increments tokens after 50ms', async () => {
+    vi.spyOn(Math, 'random').mockReturnValue(0) // 3 tokens/tick
+    const wrapper = mountThinking()
+    vi.advanceTimersByTime(50)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.text()).toContain('3 tokens')
+  })
+
+  it('resets counters when done flips false after true', async () => {
+    vi.spyOn(Math, 'random').mockReturnValue(0)
+    const wrapper = mountThinking()
+    vi.advanceTimersByTime(5000)
+    await wrapper.vm.$nextTick()
+    await wrapper.setProps({ done: true })
+    await wrapper.setProps({ done: false })
+    await wrapper.vm.$nextTick()
+    expect(wrapper.text()).toContain('(0s · ↓ 0 tokens)')
+  })
+
+  it('stops token timer on done=true', async () => {
+    vi.spyOn(Math, 'random').mockReturnValue(0) // 3 tokens/tick
+    const wrapper = mountThinking()
+    vi.advanceTimersByTime(50) // 3 tokens accumulated
+    await wrapper.vm.$nextTick()
+    await wrapper.setProps({ done: true })
+    vi.advanceTimersByTime(500) // would add +30 tokens if timer still running
+    await wrapper.setProps({ done: false })
+    await wrapper.vm.$nextTick()
+    // startCycling resets to 0, proving stopCycling had cleared the timer (not left it running)
+    expect(wrapper.text()).toContain('(0s · ↓ 0 tokens)')
   })
 })
