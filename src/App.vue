@@ -17,7 +17,7 @@ import { TerminalBlock, ClaudeCode, Bash } from 'terminal-block'
       <ClaudeCode>
         <ClaudeCode.Input>hello</ClaudeCode.Input>
         <ClaudeCode.Output>Hey! How can I help you today?</ClaudeCode.Output>
-        <ClaudeCode.Thinking status-text="almost done thinking with high effort"></ClaudeCode.Thinking>
+        <ClaudeCode.Thinking></ClaudeCode.Thinking>
       </ClaudeCode>
     </TerminalBlock>
 
