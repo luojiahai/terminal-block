@@ -31,6 +31,7 @@ function startCycling() {
   }, 1000)
   tokenTimer = setInterval(() => {
     tokens.value += Math.floor(Math.random() * 23) + 3
+    if (tokens.value >= 100000) tokens.value = 0
   }, 50)
 }
 

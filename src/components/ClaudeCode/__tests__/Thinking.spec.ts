@@ -136,6 +136,14 @@ describe('ClaudeCode Thinking — stats', () => {
     expect(wrapper.text()).toContain('(0s · ↓ 0 tokens)')
   })
 
+  it('resets tokens to 0 when they reach 100k', async () => {
+    vi.spyOn(Math, 'random').mockReturnValue(1) // floor(1*23)+3 = 26 tokens/tick; reset at tick ceil(100000/26)=3847
+    const wrapper = mountThinking()
+    vi.advanceTimersByTime(50 * 3847)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.text()).toContain('0 tokens')
+  })
+
   it('stops token timer on done=true', async () => {
     vi.spyOn(Math, 'random').mockReturnValue(0) // 3 tokens/tick
     const wrapper = mountThinking()
