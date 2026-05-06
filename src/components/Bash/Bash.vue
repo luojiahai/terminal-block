@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { inject, watchEffect } from 'vue'
-import { TERMINAL_BLOCK_TITLE_KEY } from '@/components/TerminalBlock.vue'
+import { inject, watchEffect } from "vue";
+import { TERMINAL_BLOCK_TITLE_KEY } from "@/components/TerminalBlock.vue";
 
-const props = defineProps<{ title?: string }>()
+const props = defineProps<{ title?: string }>();
 
-const titleLabel = inject(TERMINAL_BLOCK_TITLE_KEY)
+const titleLabel = inject(TERMINAL_BLOCK_TITLE_KEY);
 watchEffect(() => {
-  if (titleLabel) titleLabel.value = props.title ?? 'bash'
-})
+  if (titleLabel) titleLabel.value = props.title ?? "bash";
+});
 </script>
 
 <template>
@@ -18,5 +18,4 @@ watchEffect(() => {
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

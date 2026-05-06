@@ -1,44 +1,44 @@
 <script lang="ts">
-import type { InjectionKey, Ref } from 'vue'
-export const TERMINAL_BLOCK_TITLE_KEY: InjectionKey<Ref<string>> = Symbol('terminal-block-title')
+import type { InjectionKey, Ref } from "vue";
+export const TERMINAL_BLOCK_TITLE_KEY: InjectionKey<Ref<string>> = Symbol("terminal-block-title");
 </script>
 
 <script setup lang="ts">
-import { computed, provide, ref } from 'vue'
-import { defaultTheme, resolveTheme, type ThemeTokens } from '@/themes'
+import { computed, provide, ref } from "vue";
+import { defaultTheme, resolveTheme, type ThemeTokens } from "@/themes";
 
 const props = defineProps<{
-  theme?: string | Partial<ThemeTokens>
-}>()
+  theme?: string | Partial<ThemeTokens>;
+}>();
 
-const titleLabel = ref('')
-provide(TERMINAL_BLOCK_TITLE_KEY, titleLabel)
+const titleLabel = ref("");
+provide(TERMINAL_BLOCK_TITLE_KEY, titleLabel);
 
 const mergedTheme = computed(
   (): ThemeTokens => ({
     ...defaultTheme,
     ...(props.theme ? resolveTheme(props.theme) : {}),
   }),
-)
+);
 
 const cssVars = computed(() => ({
-  '--terminal-block-bg': mergedTheme.value.bg,
-  '--terminal-block-header-bg': mergedTheme.value.headerBg,
-  '--terminal-block-input-bg': mergedTheme.value.inputBg,
-  '--terminal-block-code-bg': mergedTheme.value.codeBg,
-  '--terminal-block-text': mergedTheme.value.text,
-  '--terminal-block-secondary': mergedTheme.value.secondary,
-  '--terminal-block-muted': mergedTheme.value.muted,
-  '--terminal-block-accent': mergedTheme.value.accent,
-  '--terminal-block-divider': mergedTheme.value.divider,
-  '--terminal-block-ansi-red': mergedTheme.value.ansiRed,
-  '--terminal-block-ansi-green': mergedTheme.value.ansiGreen,
-  '--terminal-block-ansi-yellow': mergedTheme.value.ansiYellow,
-  '--terminal-block-ansi-blue': mergedTheme.value.ansiBlue,
-  '--terminal-block-ansi-magenta': mergedTheme.value.ansiMagenta,
-  '--terminal-block-ansi-cyan': mergedTheme.value.ansiCyan,
-  '--terminal-block-ansi-white': mergedTheme.value.ansiWhite,
-}))
+  "--terminal-block-bg": mergedTheme.value.bg,
+  "--terminal-block-header-bg": mergedTheme.value.headerBg,
+  "--terminal-block-input-bg": mergedTheme.value.inputBg,
+  "--terminal-block-code-bg": mergedTheme.value.codeBg,
+  "--terminal-block-text": mergedTheme.value.text,
+  "--terminal-block-secondary": mergedTheme.value.secondary,
+  "--terminal-block-muted": mergedTheme.value.muted,
+  "--terminal-block-accent": mergedTheme.value.accent,
+  "--terminal-block-divider": mergedTheme.value.divider,
+  "--terminal-block-ansi-red": mergedTheme.value.ansiRed,
+  "--terminal-block-ansi-green": mergedTheme.value.ansiGreen,
+  "--terminal-block-ansi-yellow": mergedTheme.value.ansiYellow,
+  "--terminal-block-ansi-blue": mergedTheme.value.ansiBlue,
+  "--terminal-block-ansi-magenta": mergedTheme.value.ansiMagenta,
+  "--terminal-block-ansi-cyan": mergedTheme.value.ansiCyan,
+  "--terminal-block-ansi-white": mergedTheme.value.ansiWhite,
+}));
 </script>
 
 <template>

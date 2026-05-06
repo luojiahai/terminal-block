@@ -1,71 +1,69 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { formatTime, formatTokens } from './thinking-utils'
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import { formatTime, formatTokens } from "./thinking-utils";
 
-const props = withDefaults(
-  defineProps<{ done?: boolean; verbs?: string[]; statusText?: string }>(),
-  {
-    done: false,
-    verbs: () => ['thinking', 'flibbertigibbeting', 'combobulating'],
-  },
-)
+const props = withDefaults(defineProps<{ done?: boolean; verbs?: string[]; statusText?: string }>(), {
+  done: false,
+  verbs: () => ["thinking", "flibbertigibbeting", "combobulating"],
+});
 
-const verbIndex = ref(0)
-const seconds = ref(0)
-const tokens = ref(0)
-let timer: ReturnType<typeof setInterval> | null = null
-let tokenTimer: ReturnType<typeof setInterval> | null = null
+const verbIndex = ref(0);
+const seconds = ref(0);
+const tokens = ref(0);
+let timer: ReturnType<typeof setInterval> | null = null;
+let tokenTimer: ReturnType<typeof setInterval> | null = null;
 
 function startCycling() {
-  if (timer) return
-  seconds.value = 0
-  tokens.value = 0
-  verbIndex.value = 0
-  let verbTick = 0
+  if (timer) return;
+  seconds.value = 0;
+  tokens.value = 0;
+  verbIndex.value = 0;
+  let verbTick = 0;
   timer = setInterval(() => {
-    seconds.value += 1
-    verbTick = (verbTick + 1) % 3
+    seconds.value += 1;
+    verbTick = (verbTick + 1) % 3;
     if (verbTick === 0) {
-      verbIndex.value = (verbIndex.value + 1) % props.verbs.length
+      verbIndex.value = (verbIndex.value + 1) % props.verbs.length;
     }
-  }, 1000)
+  }, 1000);
   tokenTimer = setInterval(() => {
-    tokens.value += Math.floor(Math.random() * 23) + 3
-    if (tokens.value >= 100000) tokens.value = 0
-  }, 50)
+    tokens.value += Math.floor(Math.random() * 23) + 3;
+    if (tokens.value >= 100000) tokens.value = 0;
+  }, 50);
 }
 
 function stopCycling() {
   if (timer) {
-    clearInterval(timer)
-    timer = null
+    clearInterval(timer);
+    timer = null;
   }
   if (tokenTimer) {
-    clearInterval(tokenTimer)
-    tokenTimer = null
+    clearInterval(tokenTimer);
+    tokenTimer = null;
   }
 }
 
 onMounted(() => {
-  if (!props.done) startCycling()
-})
+  if (!props.done) startCycling();
+});
 watch(
   () => props.done,
   (done) => {
-    done ? stopCycling() : startCycling()
+    if (done) stopCycling();
+    else startCycling();
   },
-)
-onUnmounted(stopCycling)
+);
+onUnmounted(stopCycling);
 
 const presentText = computed(() => {
-  const v = props.verbs[verbIndex.value] ?? 'thinking'
-  return v.charAt(0).toUpperCase() + v.slice(1) + '...'
-})
+  const v = props.verbs[verbIndex.value] ?? "thinking";
+  return v.charAt(0).toUpperCase() + v.slice(1) + "...";
+});
 
 const statsText = computed(() => {
-  const base = `${formatTime(seconds.value)} · ↓ ${formatTokens(tokens.value)}`
-  return props.statusText ? `(${base} · ${props.statusText})` : `(${base})`
-})
+  const base = `${formatTime(seconds.value)} · ↓ ${formatTokens(tokens.value)}`;
+  return props.statusText ? `(${base} · ${props.statusText})` : `(${base})`;
+});
 </script>
 
 <template>
@@ -85,46 +83,46 @@ const statsText = computed(() => {
 }
 
 .claude-code-thinking-glyph::before {
-  content: '✻';
+  content: "✻";
   color: var(--terminal-block-muted);
 }
 
 @keyframes claude-code-thinking-glyph {
   0% {
-    content: '·';
+    content: "·";
   }
   9% {
-    content: '✢';
+    content: "✢";
   }
   18% {
-    content: '✳';
+    content: "✳";
   }
   27% {
-    content: '✶';
+    content: "✶";
   }
   36% {
-    content: '✻';
+    content: "✻";
   }
   45% {
-    content: '✽';
+    content: "✽";
   }
   55% {
-    content: '✽';
+    content: "✽";
   }
   64% {
-    content: '✻';
+    content: "✻";
   }
   73% {
-    content: '✶';
+    content: "✶";
   }
   82% {
-    content: '✳';
+    content: "✳";
   }
   91% {
-    content: '✢';
+    content: "✢";
   }
   100% {
-    content: '·';
+    content: "·";
   }
 }
 

@@ -1,18 +1,9 @@
 <script setup lang="ts">
-import { TerminalBlock, ClaudeCode, Bash } from 'terminal-block'
+import { TerminalBlock, ClaudeCode, Bash } from "terminal-block";
 </script>
 
 <template>
-  <div
-    style="
-      padding: 32px;
-      background: #1a1a2e;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    "
-  >
+  <div style="padding: 32px; background: #1a1a2e; min-height: 100vh; display: flex; flex-direction: column; gap: 24px">
     <TerminalBlock>
       <ClaudeCode>
         <ClaudeCode.Input>hello</ClaudeCode.Input>

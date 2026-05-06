@@ -1,27 +1,29 @@
 <script setup lang="ts">
-import { inject, watchEffect } from 'vue'
-import { TERMINAL_BLOCK_TITLE_KEY } from '@/components/TerminalBlock.vue'
+import { inject, watchEffect } from "vue";
+import { TERMINAL_BLOCK_TITLE_KEY } from "@/components/TerminalBlock.vue";
 
 const LOGO = ` ▐▛███▜▌
 ▝▜█████▛▘
-  ▘▘ ▝▝`
+  ▘▘ ▝▝`;
 
-const props = withDefaults(defineProps<{
-  version?: string
-  subtitle?: string
-  cwd?: string
-  title?: string
-}>(), {
-  version: 'v2.1.88',
-  subtitle: 'Opus 4.6 · Max 100x',
-  cwd: '~',
-})
+const props = withDefaults(
+  defineProps<{
+    version?: string;
+    subtitle?: string;
+    cwd?: string;
+    title?: string;
+  }>(),
+  {
+    version: "v2.1.88",
+    subtitle: "Opus 4.6 · Max 100x",
+    cwd: "~",
+  },
+);
 
-const titleLabel = inject(TERMINAL_BLOCK_TITLE_KEY)
+const titleLabel = inject(TERMINAL_BLOCK_TITLE_KEY);
 watchEffect(() => {
-  if (titleLabel) titleLabel.value = props.title ?? '✳ Claude Code'
-})
-
+  if (titleLabel) titleLabel.value = props.title ?? "✳ Claude Code";
+});
 </script>
 
 <template>
@@ -71,7 +73,7 @@ watchEffect(() => {
   flex-direction: column;
 }
 
-.claude-code-title-line { 
+.claude-code-title-line {
   display: flex;
   gap: 1ch;
 }

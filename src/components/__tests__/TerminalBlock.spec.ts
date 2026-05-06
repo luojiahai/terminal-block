@@ -1,50 +1,50 @@
-import { describe, it, expect } from 'vitest'
-import { defineComponent, inject, ref } from 'vue'
-import { mount } from '@vue/test-utils'
-import TerminalBlock from '../TerminalBlock.vue'
-import { TERMINAL_BLOCK_TITLE_KEY } from '@/components/TerminalBlock.vue'
+import { describe, it, expect } from "vitest";
+import { defineComponent, inject } from "vue";
+import { mount } from "@vue/test-utils";
+import TerminalBlock from "../TerminalBlock.vue";
+import { TERMINAL_BLOCK_TITLE_KEY } from "@/components/TerminalBlock.vue";
 
-describe('TerminalBlock', () => {
-  it('renders the macOS title bar', () => {
-    const wrapper = mount(TerminalBlock)
-    expect(wrapper.find('.terminal-block-header').exists()).toBe(true)
-  })
+describe("TerminalBlock", () => {
+  it("renders the macOS title bar", () => {
+    const wrapper = mount(TerminalBlock);
+    expect(wrapper.find(".terminal-block-header").exists()).toBe(true);
+  });
 
-  it('renders 3 traffic-light dots', () => {
-    const wrapper = mount(TerminalBlock)
-    expect(wrapper.findAll('.terminal-block-dot')).toHaveLength(3)
-  })
+  it("renders 3 traffic-light dots", () => {
+    const wrapper = mount(TerminalBlock);
+    expect(wrapper.findAll(".terminal-block-dot")).toHaveLength(3);
+  });
 
-  it('shows title written by child via TERMINAL_BLOCK_TITLE_KEY', async () => {
+  it("shows title written by child via TERMINAL_BLOCK_TITLE_KEY", async () => {
     const TitleWriter = defineComponent({
       setup() {
-        const title = inject(TERMINAL_BLOCK_TITLE_KEY)
-        if (title) title.value = 'test-app'
-        return () => null
+        const title = inject(TERMINAL_BLOCK_TITLE_KEY);
+        if (title) title.value = "test-app";
+        return () => null;
       },
-    })
-    const wrapper = mount(TerminalBlock, { slots: { default: TitleWriter } })
-    await wrapper.vm.$nextTick()
-    expect(wrapper.find('.terminal-block-app-name').text()).toBe('test-app')
-  })
+    });
+    const wrapper = mount(TerminalBlock, { slots: { default: TitleWriter } });
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find(".terminal-block-app-name").text()).toBe("test-app");
+  });
 
-  it('renders slot content', () => {
+  it("renders slot content", () => {
     const wrapper = mount(TerminalBlock, {
       slots: { default: '<div class="test-child">content</div>' },
-    })
-    expect(wrapper.find('.test-child').exists()).toBe(true)
-  })
+    });
+    expect(wrapper.find(".test-child").exists()).toBe(true);
+  });
 
-  it('applies CSS custom properties as inline style', () => {
-    const wrapper = mount(TerminalBlock)
-    const style = wrapper.attributes('style') ?? ''
-    expect(style).toContain('--terminal-block-bg')
-    expect(style).toContain('--terminal-block-text')
-  })
+  it("applies CSS custom properties as inline style", () => {
+    const wrapper = mount(TerminalBlock);
+    const style = wrapper.attributes("style") ?? "";
+    expect(style).toContain("--terminal-block-bg");
+    expect(style).toContain("--terminal-block-text");
+  });
 
-  it('has the terminal-block root class (line-height: 1 applied via CSS)', () => {
-    const wrapper = mount(TerminalBlock)
+  it("has the terminal-block root class (line-height: 1 applied via CSS)", () => {
+    const wrapper = mount(TerminalBlock);
     // scoped styles are not applied in jsdom; verify the class is present and trust the CSS rule
-    expect(wrapper.find('.terminal-block').exists()).toBe(true)
-  })
-})
+    expect(wrapper.find(".terminal-block").exists()).toBe(true);
+  });
+});

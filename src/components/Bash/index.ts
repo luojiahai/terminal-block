@@ -1,5 +1,5 @@
-import BashComponent from './Bash.vue'
-import Input from './Input.vue'
-import Output from './Output.vue'
+import BashComponent from "./Bash.vue";
+import Input from "./Input.vue";
+import Output from "./Output.vue";
 
-export const Bash = Object.assign(BashComponent, { Input, Output })
+export const Bash = Object.assign(BashComponent, { Input, Output });
