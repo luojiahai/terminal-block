@@ -1,25 +1,47 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { formatTime, formatTokens } from './thinking-utils'
 
-const props = withDefaults(defineProps<{ done?: boolean; verbs?: string[] }>(), {
-  done: false,
-  verbs: () => ['thinking', 'flibbertigibbeting', 'combobulating'],
-})
+const props = withDefaults(
+  defineProps<{ done?: boolean; verbs?: string[]; statusText?: string }>(),
+  {
+    done: false,
+    verbs: () => ['thinking', 'flibbertigibbeting', 'combobulating'],
+  },
+)
 
 const verbIndex = ref(0)
+const seconds = ref(0)
+const tokens = ref(0)
 let timer: ReturnType<typeof setInterval> | null = null
+let tokenTimer: ReturnType<typeof setInterval> | null = null
 
 function startCycling() {
   if (timer) return
+  seconds.value = 0
+  tokens.value = 0
+  verbIndex.value = 0
+  let verbTick = 0
   timer = setInterval(() => {
-    verbIndex.value = (verbIndex.value + 1) % props.verbs.length
-  }, 3000)
+    seconds.value += 1
+    verbTick = (verbTick + 1) % 3
+    if (verbTick === 0) {
+      verbIndex.value = (verbIndex.value + 1) % props.verbs.length
+    }
+  }, 1000)
+  tokenTimer = setInterval(() => {
+    tokens.value += Math.floor(Math.random() * 23) + 3
+  }, 50)
 }
 
 function stopCycling() {
   if (timer) {
     clearInterval(timer)
     timer = null
+  }
+  if (tokenTimer) {
+    clearInterval(tokenTimer)
+    tokenTimer = null
   }
 }
 
@@ -38,6 +60,12 @@ const presentText = computed(() => {
   const v = props.verbs[verbIndex.value] ?? 'thinking'
   return v.charAt(0).toUpperCase() + v.slice(1) + '...'
 })
+
+const statsText = computed(() => {
+  const parts = [`${formatTime(seconds.value)} · ↓ ${formatTokens(tokens.value)}`]
+  if (props.statusText) parts.push(props.statusText)
+  return `(${parts.join(' · ')})`
+})
 </script>
 
 <template>
@@ -45,6 +73,7 @@ const presentText = computed(() => {
     <span :class="['claude-code-thinking-glyph', { active: !done }]"></span>
     <span v-if="!done" :class="['claude-code-thinking-text', 'active']">{{ presentText }}</span>
     <span v-else class="claude-code-thinking-text">Thought for <slot /></span>
+    <span v-if="!done" class="claude-code-thinking-text">{{ statsText }}</span>
   </div>
 </template>
 
