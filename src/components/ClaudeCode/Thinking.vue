@@ -23,8 +23,15 @@ function stopCycling() {
   }
 }
 
-onMounted(() => { if (!props.done) startCycling() })
-watch(() => props.done, (done) => { done ? stopCycling() : startCycling() })
+onMounted(() => {
+  if (!props.done) startCycling()
+})
+watch(
+  () => props.done,
+  (done) => {
+    done ? stopCycling() : startCycling()
+  },
+)
 onUnmounted(stopCycling)
 
 const presentText = computed(() => {
@@ -54,18 +61,42 @@ const presentText = computed(() => {
 }
 
 @keyframes claude-code-thinking-glyph {
-  0%     { content: '·' }
-  8.33%  { content: '✢' }
-  16.67% { content: '✳' }
-  25%    { content: '✶' }
-  33.33% { content: '✻' }
-  41.67% { content: '✽' }
-  50%    { content: '✽' }
-  58.33% { content: '✻' }
-  66.67% { content: '✶' }
-  75%    { content: '✳' }
-  83.33% { content: '✢' }
-  91.67% { content: '·' }
+  0% {
+    content: '·';
+  }
+  9% {
+    content: '✢';
+  }
+  18% {
+    content: '✳';
+  }
+  27% {
+    content: '✶';
+  }
+  36% {
+    content: '✻';
+  }
+  45% {
+    content: '✽';
+  }
+  55% {
+    content: '✽';
+  }
+  64% {
+    content: '✻';
+  }
+  73% {
+    content: '✶';
+  }
+  82% {
+    content: '✳';
+  }
+  91% {
+    content: '✢';
+  }
+  100% {
+    content: '·';
+  }
 }
 
 .claude-code-thinking-glyph.active::before {
@@ -78,8 +109,13 @@ const presentText = computed(() => {
 }
 
 @keyframes claude-code-thinking-pulse {
-  0%, 100% { color: #d97757; }
-  50%       { color: rgb(245, 149, 117); }
+  0%,
+  100% {
+    color: #d97757;
+  }
+  50% {
+    color: rgb(245, 149, 117);
+  }
 }
 
 .claude-code-thinking-text.active {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TerminalBlock, ClaudeCode, Bash, Yellow } from 'terminal-block'
+import { TerminalBlock, ClaudeCode, Bash } from 'terminal-block'
 </script>
 
 <template>
@@ -17,8 +17,7 @@ import { TerminalBlock, ClaudeCode, Bash, Yellow } from 'terminal-block'
       <ClaudeCode>
         <ClaudeCode.Input>hello</ClaudeCode.Input>
         <ClaudeCode.Output>Hey! How can I help you today?</ClaudeCode.Output>
-        <ClaudeCode.Thinking done>3s</ClaudeCode.Thinking>
-        <ClaudeCode.Output>Build completed in <Yellow>2.3s</Yellow></ClaudeCode.Output>
+        <ClaudeCode.Thinking></ClaudeCode.Thinking>
       </ClaudeCode>
     </TerminalBlock>
 
