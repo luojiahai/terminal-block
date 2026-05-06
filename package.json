@@ -3,9 +3,11 @@
   "repository": {
     "url": "https://github.com/luojiahai/terminal-block"
   },
-  "version": "1.0.2",
+  "version": "1.1.0",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/terminal-block.umd.cjs",
   "module": "./dist/terminal-block.js",
   "types": "./dist/index.d.ts",
@@ -27,7 +29,8 @@
     "lint": "run-s lint:*",
     "lint:oxlint": "oxlint . --fix",
     "lint:eslint": "eslint . --fix --cache",
-    "format": "prettier --write --experimental-cli src/"
+    "format": "prettier --write --experimental-cli src/",
+    "release": "bbump"
   },
   "peerDependencies": {
     "vue": "^3.5.0"
@@ -43,6 +46,7 @@
     "@vue/eslint-config-typescript": "^14.7.0",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.9.1",
+    "bbump": "^1.0.2",
     "eslint": "^10.2.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-oxlint": "~1.60.0",
