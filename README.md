@@ -39,7 +39,7 @@ import { TerminalBlock, Bash } from 'terminal-block'
 
 ```vue
 <script setup>
-import { TerminalBlock, ClaudeCode, Yellow } from 'terminal-block'
+import { TerminalBlock, ClaudeCode } from 'terminal-block'
 </script>
 
 <template>
@@ -48,7 +48,7 @@ import { TerminalBlock, ClaudeCode, Yellow } from 'terminal-block'
       <ClaudeCode.Input>hello</ClaudeCode.Input>
       <ClaudeCode.Thinking>2s</ClaudeCode.Thinking>
       <ClaudeCode.Output>Hey! How can I help you today?</ClaudeCode.Output>
-      <ClaudeCode.Output>Build completed in <Yellow>2.3s</Yellow></ClaudeCode.Output>
+      <ClaudeCode.Output>Build completed in <span style="color: var(--terminal-block-ansi-yellow)">2.3s</span></ClaudeCode.Output>
     </ClaudeCode>
   </TerminalBlock>
 </template>
@@ -111,18 +111,19 @@ Sub-components:
 - `Bash.Input` — command line, rendered with `$` glyph
 - `Bash.Output` — command output, no glyph
 
-### Color components
+### Inline color styling
 
-Thin wrappers that apply the corresponding ANSI color CSS variable to a `<span>`. All accept default slot content.
-
-```vue
-import { Red, Green, Yellow, Blue, Magenta, Cyan, White } from 'terminal-block'
-```
+The named color components (`Red`, `Green`, `Yellow`, `Blue`, `Magenta`, `Cyan`, `White`) were removed in v2.0.0. Use a `<span>` with the corresponding theme CSS variable instead:
 
 ```vue
+<!-- Before (v1.x) -->
 <ClaudeCode.Output>Status: <Green>OK</Green></ClaudeCode.Output>
-<ClaudeCode.Output>Error: <Red>file not found</Red></ClaudeCode.Output>
+
+<!-- After (v2.0+) -->
+<ClaudeCode.Output>Status: <span style="color: var(--terminal-block-ansi-green)">OK</span></ClaudeCode.Output>
 ```
+
+Available ANSI color variables: `--terminal-block-ansi-red`, `--terminal-block-ansi-green`, `--terminal-block-ansi-yellow`, `--terminal-block-ansi-blue`, `--terminal-block-ansi-magenta`, `--terminal-block-ansi-cyan`, `--terminal-block-ansi-white`.
 
 ## Theming
 
