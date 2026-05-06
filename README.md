@@ -1,4 +1,4 @@
-# terminal-block
+# Terminal Block
 
 A Vue 3 component library for rendering macOS-style terminal windows. Supports `ClaudeCode` and `Bash` app layouts with a themeable design.
 
@@ -48,7 +48,10 @@ import { TerminalBlock, ClaudeCode } from 'terminal-block'
       <ClaudeCode.Input>hello</ClaudeCode.Input>
       <ClaudeCode.Thinking>2s</ClaudeCode.Thinking>
       <ClaudeCode.Output>Hey! How can I help you today?</ClaudeCode.Output>
-      <ClaudeCode.Output>Build completed in <span style="color: var(--terminal-block-ansi-yellow)">2.3s</span></ClaudeCode.Output>
+      <ClaudeCode.Output
+        >Build completed in
+        <span style="color: var(--terminal-block-ansi-yellow)">2.3s</span></ClaudeCode.Output
+      >
     </ClaudeCode>
   </TerminalBlock>
 </template>
@@ -70,20 +73,20 @@ import { TerminalBlock, ClaudeCode } from 'terminal-block'
 
 The outer window shell. Provides the title bar and applies the theme.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type                             | Default     | Description                           |
+| ------- | -------------------------------- | ----------- | ------------------------------------- |
 | `theme` | `string \| Partial<ThemeTokens>` | `"default"` | Named theme or partial token override |
 
 ### `ClaudeCode`
 
 Renders a Claude Code session layout with logo, metadata header, and a slot for turns.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `version` | `string` | `"v2.1.88"` | Version string shown in the header |
-| `subtitle` | `string` | `"Opus 4.6 · Max 100x"` | Subtitle line below the title |
-| `cwd` | `string` | `"~"` | Working directory displayed in the header |
-| `title` | `string` | `"✳ Claude Code"` | Label shown in the `TerminalBlock` title bar |
+| Prop       | Type     | Default                 | Description                                  |
+| ---------- | -------- | ----------------------- | -------------------------------------------- |
+| `version`  | `string` | `"v2.1.88"`             | Version string shown in the header           |
+| `subtitle` | `string` | `"Opus 4.6 · Max 100x"` | Subtitle line below the title                |
+| `cwd`      | `string` | `"~"`                   | Working directory displayed in the header    |
+| `title`    | `string` | `"✳ Claude Code"`       | Label shown in the `TerminalBlock` title bar |
 
 Sub-components (compound component pattern):
 
@@ -93,17 +96,17 @@ Sub-components (compound component pattern):
 
 #### `ClaudeCode.Thinking` props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `done` | `boolean` | `false` | `false` shows "Verb...", `true` shows "Thought for &lt;slot&gt;" |
-| `verb` | `string` | `"thinking"` | Action verb used in the in-progress state |
+| Prop   | Type      | Default      | Description                                                      |
+| ------ | --------- | ------------ | ---------------------------------------------------------------- |
+| `done` | `boolean` | `false`      | `false` shows "Verb...", `true` shows "Thought for &lt;slot&gt;" |
+| `verb` | `string`  | `"thinking"` | Action verb used in the in-progress state                        |
 
 ### `Bash`
 
 Renders a plain bash session.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type     | Default  | Description                                  |
+| ------- | -------- | -------- | -------------------------------------------- |
 | `title` | `string` | `"bash"` | Label shown in the `TerminalBlock` title bar |
 
 Sub-components:
@@ -147,24 +150,24 @@ Pass a partial `ThemeTokens` object to override specific colors:
 
 Available `ThemeTokens` keys:
 
-| Token | Description |
-|-------|-------------|
-| `bg` | Window background |
-| `headerBg` | Title bar background |
-| `inputBg` | Input row background |
-| `codeBg` | Code block background |
-| `text` | Primary text color |
-| `secondary` | Secondary text color |
-| `muted` | Muted/dimmed text color |
-| `accent` | Accent color |
-| `divider` | Divider line color |
-| `ansiRed` | ANSI red |
-| `ansiGreen` | ANSI green |
-| `ansiYellow` | ANSI yellow |
-| `ansiBlue` | ANSI blue |
-| `ansiMagenta` | ANSI magenta |
-| `ansiCyan` | ANSI cyan |
-| `ansiWhite` | ANSI white |
+| Token         | Description             |
+| ------------- | ----------------------- |
+| `bg`          | Window background       |
+| `headerBg`    | Title bar background    |
+| `inputBg`     | Input row background    |
+| `codeBg`      | Code block background   |
+| `text`        | Primary text color      |
+| `secondary`   | Secondary text color    |
+| `muted`       | Muted/dimmed text color |
+| `accent`      | Accent color            |
+| `divider`     | Divider line color      |
+| `ansiRed`     | ANSI red                |
+| `ansiGreen`   | ANSI green              |
+| `ansiYellow`  | ANSI yellow             |
+| `ansiBlue`    | ANSI blue               |
+| `ansiMagenta` | ANSI magenta            |
+| `ansiCyan`    | ANSI cyan               |
+| `ansiWhite`   | ANSI white              |
 
 ### Named themes
 
