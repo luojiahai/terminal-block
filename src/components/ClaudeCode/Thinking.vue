@@ -69,6 +69,7 @@ const presentText = computed(() => {
 }
 
 .claude-code-thinking-glyph.active::before {
+  color: #d97757;
   animation: claude-code-thinking-glyph 1440ms steps(12, start) infinite;
 }
 
@@ -77,12 +78,12 @@ const presentText = computed(() => {
 }
 
 @keyframes claude-code-thinking-pulse {
-  0%, 100% { color: rgb(153, 153, 153); }
-  50%       { color: rgb(185, 185, 185); }
+  0%, 100% { color: #d97757; }
+  50%       { color: rgb(245, 149, 117); }
 }
 
 .claude-code-thinking-text.active {
-  color: rgb(153, 153, 153);
+  color: #d97757;
   animation: claude-code-thinking-pulse 2s ease-in-out 3s infinite;
 }
 </style>
