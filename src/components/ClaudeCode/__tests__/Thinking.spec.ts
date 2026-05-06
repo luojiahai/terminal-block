@@ -135,4 +135,17 @@ describe('ClaudeCode Thinking — stats', () => {
     await wrapper.vm.$nextTick()
     expect(wrapper.text()).toContain('(0s · ↓ 0 tokens)')
   })
+
+  it('stops token timer on done=true', async () => {
+    vi.spyOn(Math, 'random').mockReturnValue(0) // 3 tokens/tick
+    const wrapper = mountThinking()
+    vi.advanceTimersByTime(50) // 3 tokens accumulated
+    await wrapper.vm.$nextTick()
+    await wrapper.setProps({ done: true })
+    vi.advanceTimersByTime(500) // would add +30 tokens if timer still running
+    await wrapper.setProps({ done: false })
+    await wrapper.vm.$nextTick()
+    // startCycling resets to 0, proving stopCycling had cleared the timer (not left it running)
+    expect(wrapper.text()).toContain('(0s · ↓ 0 tokens)')
+  })
 })

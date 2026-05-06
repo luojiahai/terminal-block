@@ -62,9 +62,8 @@ const presentText = computed(() => {
 })
 
 const statsText = computed(() => {
-  const parts = [`${formatTime(seconds.value)} · ↓ ${formatTokens(tokens.value)}`]
-  if (props.statusText) parts.push(props.statusText)
-  return `(${parts.join(' · ')})`
+  const base = `${formatTime(seconds.value)} · ↓ ${formatTokens(tokens.value)}`
+  return props.statusText ? `(${base} · ${props.statusText})` : `(${base})`
 })
 </script>
 
