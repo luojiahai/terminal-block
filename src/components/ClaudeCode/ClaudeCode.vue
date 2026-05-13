@@ -12,6 +12,7 @@ const props = withDefaults(
     subtitle?: string;
     cwd?: string;
     title?: string;
+    prompt?: string;
   }>(),
   {
     version: "v2.1.88",
@@ -42,13 +43,12 @@ watchEffect(() => {
     <div class="claude-code-body">
       <slot />
     </div>
-    <div class="claude-code-divider-line">
-      ──────────────────────────────────────────────────────────────────────────────
+    <div class="claude-code-divider-line" />
+    <div class="claude-code-prompt">
+      <span class="claude-code-glyph">❯</span>
+      <span v-if="prompt" class="claude-code-prompt-text">{{ prompt }}</span>
     </div>
-    <div class="claude-code-waiting-prompt">❯</div>
-    <div class="claude-code-divider-line">
-      ──────────────────────────────────────────────────────────────────────────────
-    </div>
+    <div class="claude-code-divider-line" />
   </div>
 </template>
 
@@ -98,12 +98,18 @@ watchEffect(() => {
 }
 
 .claude-code-divider-line {
-  color: var(--terminal-block-muted);
-  overflow: hidden;
-  white-space: nowrap;
+  border-top: 1px solid var(--terminal-block-muted);
 }
 
-.claude-code-waiting-prompt {
+.claude-code-prompt {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
   color: var(--terminal-block-secondary);
+  padding: 0.5lh 0;
+}
+
+.claude-code-prompt-text {
+  color: var(--terminal-block-text);
 }
 </style>

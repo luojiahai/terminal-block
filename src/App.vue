@@ -13,6 +13,13 @@ import { TerminalBlock, ClaudeCode, Bash } from "terminal-block";
     </TerminalBlock>
 
     <TerminalBlock>
+      <ClaudeCode prompt="Hello? Are you still there?">
+        <ClaudeCode.Input>what time is it?</ClaudeCode.Input>
+        <ClaudeCode.Output>It's time to ship.</ClaudeCode.Output>
+      </ClaudeCode>
+    </TerminalBlock>
+
+    <TerminalBlock>
       <Bash>
         <Bash.Input>ls -la</Bash.Input>
         <Bash.Output>total 24 drwxr-xr-x 8 user staff 256</Bash.Output>
