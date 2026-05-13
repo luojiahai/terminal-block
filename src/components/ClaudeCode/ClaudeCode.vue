@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, watchEffect } from "vue";
+import { computed, inject, watchEffect } from "vue";
 import { TERMINAL_BLOCK_TITLE_KEY } from "@/components/TerminalBlock.vue";
 
 const LOGO = ` ▐▛███▜▌
@@ -20,6 +20,9 @@ const props = withDefaults(
     cwd: "~",
   },
 );
+
+const promptText = computed(() => props.prompt ?? "█");
+const promptBlink = computed(() => props.prompt === undefined);
 
 const titleLabel = inject(TERMINAL_BLOCK_TITLE_KEY);
 watchEffect(() => {
@@ -46,7 +49,9 @@ watchEffect(() => {
     <div class="claude-code-divider-line" />
     <div class="claude-code-prompt">
       <span class="claude-code-glyph">❯</span>
-      <span v-if="prompt" class="claude-code-prompt-text">{{ prompt }}</span>
+      <span class="claude-code-prompt-text" :class="{ 'claude-code-prompt-text--blink': promptBlink }">{{
+        promptText
+      }}</span>
     </div>
     <div class="claude-code-divider-line" />
   </div>
@@ -111,5 +116,19 @@ watchEffect(() => {
 
 .claude-code-prompt-text {
   color: var(--terminal-block-text);
+}
+
+.claude-code-prompt-text--blink {
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 </style>
