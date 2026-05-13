@@ -16,7 +16,7 @@ const props = withDefaults(
   }>(),
   {
     version: "v2.1.88",
-    subtitle: "Opus 4.6 · Max 100x",
+    subtitle: "Opus 4.7 (1M context) · Claude Max",
     cwd: "~",
   },
 );
